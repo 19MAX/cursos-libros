@@ -1,1 +1,942 @@
 @import "tailwindcss";
+@import "flowbite";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary-dark: #ffffff;
+    --color-primary-light: #161616;
+    --color-app-primary: #3b82f6;
+    --color-app-primary-dark: #1d4ed8;
+    --color-app-primary-light: #60a5fa;
+}
+
+/* ===== CLASES BASE PARA PANEL DE ADMINISTRACIÓN ===== */
+
+/* Contenedores principales */
+.admin-container {
+    @apply min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300;
+}
+
+.admin-main-content {
+    @apply flex-1 p-6 transition-colors duration-300;
+}
+
+.admin-sidebar {
+    @apply bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-colors duration-300;
+}
+
+.admin-header {
+    @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors duration-300;
+}
+
+/* ===== COMPONENTES DE FORMULARIOS ===== */
+
+/* Inputs básicos */
+.admin-input {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 transition-colors duration-200;
+}
+
+.admin-input-with-icon {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:placeholder-gray-400 transition-colors duration-200;
+}
+
+.admin-input-error {
+    @apply bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-600 text-red-900 dark:text-red-400 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:placeholder-red-400 transition-colors duration-200;
+}
+
+.admin-input-success {
+    @apply bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-600 text-green-900 dark:text-green-400 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:placeholder-green-400 transition-colors duration-200;
+}
+
+/* Labels */
+.admin-label {
+    @apply block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+.admin-label-required::after {
+    @apply text-red-500 dark:text-red-400;
+    content: " *";
+}
+
+.admin-label-optional::after {
+    @apply text-gray-400 dark:text-gray-500 text-xs;
+    content: " (opcional)";
+}
+
+/* Selects */
+.admin-select {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-colors duration-200;
+}
+
+/* Textareas */
+.admin-textarea {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 transition-colors duration-200;
+}
+
+/* Checkboxes y Radios */
+.admin-checkbox {
+    @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 transition-colors duration-200;
+}
+
+.admin-radio {
+    @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 transition-colors duration-200;
+}
+
+/* ===== BOTONES ===== */
+
+/* Botones principales */
+.admin-btn-primary {
+    @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition-all duration-200;
+}
+
+.admin-btn-secondary {
+    @apply text-gray-700 bg-white hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 transition-all duration-200;
+}
+
+.admin-btn-success {
+    @apply text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all duration-200;
+}
+
+.admin-btn-danger {
+    @apply text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800 transition-all duration-200;
+}
+
+.admin-btn-warning {
+    @apply text-white bg-yellow-600 hover:bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-yellow-500 dark:hover:bg-yellow-600 dark:focus:ring-yellow-800 transition-all duration-200;
+}
+
+.admin-btn-info {
+    @apply text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-500 dark:hover:bg-cyan-600 dark:focus:ring-cyan-800 transition-all duration-200;
+}
+
+/* Botones de tamaño */
+.admin-btn-sm {
+    @apply px-3 py-1.5 text-xs;
+}
+
+.admin-btn-lg {
+    @apply px-6 py-3 text-base;
+}
+
+.admin-btn-xl {
+    @apply px-8 py-4 text-lg;
+}
+
+/* Botones con iconos */
+.admin-btn-icon {
+    @apply p-2.5 rounded-lg transition-all duration-200;
+}
+
+.admin-btn-icon-sm {
+    @apply p-2 rounded-lg transition-all duration-200;
+}
+
+.admin-btn-icon-lg {
+    @apply p-3 rounded-lg transition-all duration-200;
+}
+
+/* Botones outline */
+.admin-btn-outline-primary {
+    @apply text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-400 dark:hover:text-white dark:focus:ring-blue-800 transition-all duration-200;
+}
+
+.admin-btn-outline-secondary {
+    @apply text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 transition-all duration-200;
+}
+
+/* ===== CARDS ===== */
+
+/* Cards básicas */
+.admin-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
+}
+
+.admin-card-header {
+    @apply px-6 py-4 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-t-lg transition-colors duration-200;
+}
+
+.admin-card-body {
+    @apply p-6 transition-colors duration-200;
+}
+
+.admin-card-footer {
+    @apply px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-b-lg transition-colors duration-200;
+}
+
+/* Cards con hover */
+.admin-card-hover {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300;
+}
+
+/* Cards transparentes */
+.admin-card-transparent {
+    @apply bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm backdrop-blur-sm transition-colors duration-200;
+}
+
+/* Cards de estadísticas */
+.admin-card-stats {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm p-6 transition-colors duration-200;
+}
+
+.admin-card-stats-primary {
+    @apply bg-gradient-to-r from-blue-500 to-blue-600 text-white border-0 shadow-lg;
+}
+
+.admin-card-stats-success {
+    @apply bg-gradient-to-r from-green-500 to-green-600 text-white border-0 shadow-lg;
+}
+
+.admin-card-stats-warning {
+    @apply bg-gradient-to-r from-yellow-500 to-yellow-600 text-white border-0 shadow-lg;
+}
+
+.admin-card-stats-danger {
+    @apply bg-gradient-to-r from-red-500 to-red-600 text-white border-0 shadow-lg;
+}
+
+/* ===== TABLAS ===== */
+
+.admin-table {
+    @apply w-full text-sm text-left text-gray-500 dark:text-gray-400;
+}
+
+.admin-table thead {
+    @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300;
+}
+
+.admin-table th {
+    @apply px-6 py-3 transition-colors duration-200;
+}
+
+.admin-table td {
+    @apply px-6 py-4 whitespace-nowrap transition-colors duration-200;
+}
+
+.admin-table tbody tr {
+    @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200;
+}
+
+.admin-table-striped tbody tr:nth-child(even) {
+    @apply bg-gray-50 dark:bg-gray-700/50;
+}
+
+/* ===== ALERTAS ===== */
+
+.admin-alert {
+    @apply p-4 mb-4 rounded-lg transition-colors duration-200;
+}
+
+.admin-alert-success {
+    @apply bg-green-50 border border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400;
+}
+
+.admin-alert-error {
+    @apply bg-red-50 border border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400;
+}
+
+.admin-alert-warning {
+    @apply bg-yellow-50 border border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-400;
+}
+
+.admin-alert-info {
+    @apply bg-blue-50 border border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400;
+}
+
+/* ===== NAVEGACIÓN ===== */
+
+.admin-nav-item {
+    @apply flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200;
+}
+
+.admin-nav-item-active {
+    @apply bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300;
+}
+
+.admin-nav-item-icon {
+    @apply w-5 h-5 mr-3 transition-colors duration-200;
+}
+
+/* ===== SIDEBAR MEJORADO ===== */
+
+.admin-sidebar-item {
+    @apply flex items-center px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200;
+}
+
+.admin-sidebar-item-active {
+    @apply bg-blue-600 text-white dark:bg-blue-600 dark:text-white shadow-lg;
+}
+
+.admin-sidebar-item-active .admin-nav-item-icon {
+    @apply text-white;
+}
+
+.admin-sidebar-item:hover {
+    @apply bg-gray-100 dark:bg-gray-700;
+}
+
+.admin-sidebar-item-active:hover {
+    @apply bg-blue-700 dark:bg-blue-700;
+}
+
+.admin-sidebar-group {
+    @apply px-4 py-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider transition-colors duration-200;
+}
+
+.admin-sidebar-divider {
+    @apply my-2 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+/* ===== ICONOS MÁS GRANDES ===== */
+
+.admin-nav-item-icon {
+    @apply w-6 h-6 mr-3 transition-colors duration-200;
+}
+
+.admin-nav-item-icon-sm {
+    @apply w-5 h-5 mr-2 transition-colors duration-200;
+}
+
+/* ===== SUBMENÚS ===== */
+
+.admin-sidebar-group-item {
+    @apply relative;
+}
+
+.admin-submenu {
+    @apply hidden overflow-hidden transition-all duration-300 ease-in-out;
+}
+
+.admin-submenu-open {
+    @apply block;
+}
+
+.admin-submenu-item {
+    @apply flex items-center px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 ml-4;
+}
+
+.admin-submenu-item-active {
+    @apply bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300;
+}
+
+.admin-submenu-item:hover {
+    @apply bg-gray-100 dark:bg-gray-700;
+}
+
+.admin-submenu-item-active:hover {
+    @apply bg-blue-200 dark:bg-blue-800/50;
+}
+
+/* Flecha del submenú */
+.submenu-arrow {
+    @apply transition-transform duration-200;
+}
+
+.admin-sidebar-group-item.active .submenu-arrow {
+    @apply rotate-180;
+}
+
+/* ===== SIDEBAR COLAPSADO ===== */
+
+/* Clases para el sidebar colapsado */
+.sidebar-text {
+    @apply transition-all duration-300;
+}
+
+/* Sidebar colapsado - solo iconos */
+.admin-sidebar.collapsed {
+    @apply w-16;
+}
+
+.admin-sidebar.collapsed .sidebar-text {
+    @apply hidden;
+}
+
+.admin-sidebar.collapsed .admin-nav-item-icon {
+    @apply mx-auto w-7 h-7;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-item {
+    @apply justify-center;
+}
+
+/* Submenús en sidebar colapsado */
+.admin-sidebar.collapsed .admin-submenu {
+    @apply absolute left-full top-0 ml-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg min-w-48 z-50;
+}
+
+.admin-sidebar.collapsed .admin-submenu-item {
+    @apply ml-0 px-3 py-2;
+}
+
+.admin-sidebar.collapsed .admin-nav-item-icon-sm {
+    @apply w-5 h-5 mr-2;
+}
+
+/* Main content ajustado para sidebar colapsado */
+.main-content-collapsed {
+    @apply md:ml-16;
+}
+
+/* Transiciones suaves para el toggle */
+.admin-sidebar,
+#main-content {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+/* Hover mejorado para sidebar colapsado */
+.admin-sidebar.collapsed .admin-sidebar-item:hover {
+    @apply bg-gray-100 dark:bg-gray-700 rounded-lg;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-item-active:hover {
+    @apply bg-blue-700 dark:bg-blue-700;
+}
+
+/* Tooltip para sidebar colapsado */
+.admin-sidebar.collapsed .admin-sidebar-item {
+    @apply relative;
+}
+
+.admin-sidebar.collapsed .admin-sidebar-item::after {
+    @apply absolute left-full ml-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 invisible transition-all duration-200 pointer-events-none whitespace-nowrap;
+    content: attr(data-title);
+}
+
+.admin-sidebar.collapsed .admin-sidebar-item:hover::after {
+    @apply opacity-100 visible;
+}
+
+/* Submenús en sidebar colapsado - mostrar al hover */
+.admin-sidebar.collapsed .admin-sidebar-group-item:hover .admin-submenu {
+    @apply block;
+}
+
+/* Ocultar flechas en sidebar colapsado */
+.admin-sidebar.collapsed .submenu-arrow {
+    @apply hidden;
+}
+
+/* ===== BADGES ===== */
+
+.admin-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium transition-colors duration-200;
+}
+
+.admin-badge-primary {
+    @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300;
+}
+
+.admin-badge-success {
+    @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300;
+}
+
+.admin-badge-warning {
+    @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300;
+}
+
+.admin-badge-danger {
+    @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300;
+}
+
+.admin-badge-info {
+    @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300;
+}
+
+.admin-badge-gray {
+    @apply bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300;
+}
+
+/* ===== MODALES ===== */
+
+.admin-modal {
+    @apply fixed inset-0 bg-gray-600 transition-opacity duration-300;
+}
+
+.admin-modal-content {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.admin-modal-header {
+    @apply px-6 py-4 border-b border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.admin-modal-body {
+    @apply px-6 py-4 transition-colors duration-200;
+}
+
+.admin-modal-footer {
+    @apply px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-b-lg transition-colors duration-200;
+}
+
+/* ===== FORMULARIOS ===== */
+
+.admin-form-group {
+    @apply mb-4 transition-colors duration-200;
+}
+
+.admin-form-row {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 transition-colors duration-200;
+}
+
+.admin-form-row-3 {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-4 transition-colors duration-200;
+}
+
+.admin-form-actions {
+    @apply flex justify-end gap-2 pt-4 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+/* ===== UTILIDADES ===== */
+
+.admin-text-primary {
+    @apply text-gray-900 dark:text-white transition-colors duration-200;
+}
+
+.admin-text-secondary {
+    @apply text-gray-600 dark:text-gray-300 transition-colors duration-200;
+}
+
+.admin-text-muted {
+    @apply text-gray-500 dark:text-gray-400 transition-colors duration-200;
+}
+
+.admin-text-accent {
+    @apply text-blue-600 dark:text-blue-400 transition-colors duration-200;
+}
+
+.admin-link {
+    @apply text-blue-600 hover:underline dark:text-blue-400 transition-colors duration-200;
+}
+
+.admin-divider {
+    @apply border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.admin-shadow {
+    @apply shadow-sm dark:shadow-gray-900/20 transition-shadow duration-200;
+}
+
+.admin-shadow-lg {
+    @apply shadow-lg dark:shadow-gray-900/30 transition-shadow duration-200;
+}
+
+/* ===== RESPONSIVE ===== */
+
+.admin-responsive-table {
+    @apply block w-full overflow-x-auto transition-colors duration-200;
+}
+
+/* ===== ANIMACIONES ===== */
+
+.admin-fade-in {
+    @apply duration-300;
+}
+
+.admin-slide-in {
+    @apply duration-300;
+}
+
+.admin-scale-in {
+    @apply duration-300;
+}
+
+/* ===== ESTADOS DE CARGA ===== */
+
+.admin-loading {
+    @apply opacity-50 pointer-events-none transition-opacity duration-200;
+}
+
+.admin-spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-blue-600 dark:border-gray-600 dark:border-t-blue-400;
+}
+
+.admin-spinner-sm {
+    @apply w-4 h-4;
+}
+
+.admin-spinner-md {
+    @apply w-6 h-6;
+}
+
+.admin-spinner-lg {
+    @apply w-8 h-8;
+}
+
+/* ===== TOOLTIPS ===== */
+
+.admin-tooltip {
+    @apply absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700 opacity-0 invisible transition-all duration-200;
+}
+
+.admin-tooltip-visible {
+    @apply opacity-100 visible;
+}
+
+/* ===== DROPDOWNS ===== */
+
+.admin-dropdown {
+    @apply absolute z-10 bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.admin-dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200;
+}
+
+/* ===== PAGINACIÓN ===== */
+
+.admin-pagination {
+    @apply flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.admin-pagination-item {
+    @apply px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors duration-200;
+}
+
+.admin-pagination-active {
+    @apply text-blue-600 bg-blue-50 border-blue-300 dark:bg-blue-900/50 dark:border-blue-600 dark:text-blue-300;
+}
+
+/* ===== BREADCRUMBS ===== */
+
+.admin-breadcrumb {
+    @apply flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-200;
+}
+
+.admin-breadcrumb-item {
+    @apply hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200;
+}
+
+.admin-breadcrumb-separator {
+    @apply text-gray-400 dark:text-gray-600;
+}
+
+/* ===== SEARCH ===== */
+
+.admin-search {
+    @apply relative transition-colors duration-200;
+}
+
+.admin-search-input {
+    @apply pl-10 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 transition-colors duration-200;
+}
+
+.admin-search-icon {
+    @apply absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500 dark:text-gray-400 transition-colors duration-200;
+}
+
+/* ===== FILTERS ===== */
+
+.admin-filter-group {
+    @apply flex flex-wrap gap-2 items-center transition-colors duration-200;
+}
+
+.admin-filter-chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+.admin-filter-chip-remove {
+    @apply ml-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors duration-200;
+}
+
+/* ===== PROGRESS BARS ===== */
+
+.admin-progress {
+    @apply w-full bg-gray-200 rounded-full dark:bg-gray-700 transition-colors duration-200;
+}
+
+.admin-progress-bar {
+    @apply bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full transition-all duration-200;
+}
+
+.admin-progress-success {
+    @apply bg-green-600;
+}
+
+.admin-progress-warning {
+    @apply bg-yellow-600;
+}
+
+.admin-progress-danger {
+    @apply bg-red-600;
+}
+
+/* ===== AVATARS ===== */
+
+.admin-avatar {
+    @apply w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+.admin-avatar-sm {
+    @apply w-6 h-6 text-xs;
+}
+
+.admin-avatar-lg {
+    @apply w-12 h-12 text-lg;
+}
+
+.admin-avatar-xl {
+    @apply w-16 h-16 text-xl;
+}
+
+/* ===== TIMELINE ===== */
+
+.admin-timeline {
+    @apply relative border-l border-gray-200 dark:border-gray-700 ml-3 transition-colors duration-200;
+}
+
+.admin-timeline-item {
+    @apply relative pb-4 transition-colors duration-200;
+}
+
+.admin-timeline-item::before {
+    @apply absolute w-3 h-3 bg-gray-200 border border-white rounded-full mt-1.5 -left-1.5 dark:border-gray-900 dark:bg-gray-700 transition-colors duration-200;
+    content: "";
+}
+
+.admin-timeline-item-active::before {
+    @apply bg-blue-600 dark:bg-blue-400;
+}
+
+/* ===== WIZARDS ===== */
+
+.admin-wizard-step {
+    @apply flex items-center transition-colors duration-200;
+}
+
+.admin-wizard-step-active {
+    @apply text-blue-600 dark:text-blue-400;
+}
+
+.admin-wizard-step-completed {
+    @apply text-green-600 dark:text-green-400;
+}
+
+.admin-wizard-step-pending {
+    @apply text-gray-400 dark:text-gray-600;
+}
+
+/* ===== CALENDAR ===== */
+
+.admin-calendar {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
+}
+
+.admin-calendar-header {
+    @apply flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.admin-calendar-day {
+    @apply w-8 h-8 flex items-center justify-center text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors duration-200;
+}
+
+.admin-calendar-day-today {
+    @apply bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-400;
+}
+
+.admin-calendar-day-selected {
+    @apply bg-blue-600 text-white dark:bg-blue-500;
+}
+
+/* ===== CHAT ===== */
+
+.admin-chat-container {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
+}
+
+.admin-chat-message {
+    @apply mb-4 p-3 rounded-lg transition-colors duration-200;
+}
+
+.admin-chat-message-sent {
+    @apply bg-blue-600 text-white ml-auto max-w-xs;
+}
+
+.admin-chat-message-received {
+    @apply bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white max-w-xs;
+}
+
+.admin-chat-input {
+    @apply flex items-center p-3 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+/* ===== NOTIFICACIONES ===== */
+
+.admin-notification {
+    @apply fixed top-4 right-4 z-50 p-4 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 transition-all duration-300;
+}
+
+.admin-notification-success {
+    @apply bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 text-green-800 dark:text-green-400;
+}
+
+.admin-notification-error {
+    @apply bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 text-red-800 dark:text-red-400;
+}
+
+.admin-notification-warning {
+    @apply bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-400;
+}
+
+.admin-notification-info {
+    @apply bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-400;
+}
+
+/* ===== DASHBOARD ===== */
+
+.admin-dashboard-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 transition-colors duration-200;
+}
+
+.admin-dashboard-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm p-6 transition-colors duration-200;
+}
+
+.admin-dashboard-stat {
+    @apply text-2xl font-bold text-gray-900 dark:text-white transition-colors duration-200;
+}
+
+.admin-dashboard-label {
+    @apply text-sm font-medium text-gray-500 dark:text-gray-400 transition-colors duration-200;
+}
+
+.admin-dashboard-change {
+    @apply text-sm font-medium transition-colors duration-200;
+}
+
+.admin-dashboard-change-positive {
+    @apply text-green-600 dark:text-green-400;
+}
+
+.admin-dashboard-change-negative {
+    @apply text-red-600 dark:text-red-400;
+}
+
+/* ===== UTILIDADES DE TRANSICIÓN ===== */
+
+.admin-transition {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+.admin-transition-colors {
+    @apply transition-colors duration-200;
+}
+
+.admin-transition-transform {
+    @apply transition-transform duration-200;
+}
+
+.admin-transition-opacity {
+    @apply transition-opacity duration-200;
+}
+
+/* ===== CLASES LEGACY PARA COMPATIBILIDAD ===== */
+
+/* Mantener clases existentes para compatibilidad */
+.theme-input {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 transition-colors duration-200;
+}
+
+.theme-input-with-icon {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:placeholder-gray-400 transition-colors duration-200;
+}
+
+.theme-input-error {
+    @apply bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-600 text-red-900 dark:text-red-400 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:placeholder-red-400 transition-colors duration-200;
+}
+
+.theme-label {
+    @apply block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+.theme-label-required::after {
+    @apply text-red-500 dark:text-red-400;
+    content: " *";
+}
+
+.theme-btn-primary {
+    @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition-all duration-200;
+}
+
+.theme-btn-secondary {
+    @apply text-gray-700 bg-white hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 transition-all duration-200;
+}
+
+.theme-btn-danger {
+    @apply text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800 transition-all duration-200;
+}
+
+.theme-btn-success {
+    @apply text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all duration-200;
+}
+
+.theme-btn-icon {
+    @apply p-2.5 rounded-lg transition-all duration-200;
+}
+
+.theme-card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
+}
+
+.theme-card-transparent {
+    @apply bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm backdrop-blur-sm transition-colors duration-200;
+}
+
+.theme-card-hover {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300;
+}
+
+.theme-text-primary {
+    @apply text-gray-900 dark:text-white transition-colors duration-200;
+}
+
+.theme-text-secondary {
+    @apply text-gray-600 dark:text-gray-300 transition-colors duration-200;
+}
+
+.theme-text-muted {
+    @apply text-gray-500 dark:text-gray-400 transition-colors duration-200;
+}
+
+.theme-text-accent {
+    @apply text-blue-600 dark:text-blue-400 transition-colors duration-200;
+}
+
+.theme-link {
+    @apply text-blue-600 hover:underline dark:text-blue-400 transition-colors duration-200;
+}
+
+.theme-container {
+    @apply min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300;
+}
+
+.theme-section {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
+}
+
+.theme-divider {
+    @apply border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+.theme-alert-success {
+    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-green-50 border border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400;
+}
+
+.theme-alert-error {
+    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-red-50 border border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400;
+}
+
+.theme-alert-warning {
+    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-yellow-50 border border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-400;
+}
+
+.theme-alert-info {
+    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-blue-50 border border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400;
+}
+
+.theme-transition {
+    @apply transition-all duration-300 ease-in-out;
+}
+
+.theme-transition-colors {
+    @apply transition-colors duration-200;
+}

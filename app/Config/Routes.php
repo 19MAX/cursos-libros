@@ -9,7 +9,29 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Auth\LoginController::index');
 
 $routes->group('auth', function ($routes) {
-    $routes->get('login', 'Auth\LoginController::index', ['as' => 'login']);
-    $routes->post('login', 'Auth\LoginController::login', ['as' => 'login.post']);
-    $routes->get('logout', 'Auth\LoginController::logout', ['as' => 'logout']);
+    $routes->get('login', 'Auth\LoginController::index');
+    $routes->post('login', 'Auth\LoginController::login');
+    $routes->get('logout', 'Auth\LoginController::logout');
+
+    $routes->get('recover', 'Auth\RecoverController::index');
+    $routes->post('recover', 'Auth\RecoverController::index');
+});
+
+$routes->group('admin', function ($routes) {
+
+    $routes->get('/', 'Admin\DashboardController::index');
+
+    $routes->group('courses', function ($routes) {
+        $routes->get('', 'Admin\Courses\CoursesController::index');
+        $routes->get('create', 'Admin\Courses\CoursesController::create');
+        $routes->post('store', 'Admin\Courses\CoursesController::store');
+        $routes->get('edit/(:num)', 'Admin\Courses\CoursesController::edit/$1');
+        $routes->post('update/(:num)', 'Admin\Courses\CoursesController::update/$1');
+        $routes->get('delete/(:num)', 'Admin\Courses\CoursesController::delete/$1');
+    });
+
+});
+$routes->group('docente', function ($routes) {
+    $routes->get('', 'index');
+
 });

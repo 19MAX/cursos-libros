@@ -43,9 +43,9 @@ class CreateUsersTable extends Migration
                 'constraint' => '255',
             ],
             'role' => [
-                'type' => 'ENUM',
-                'constraint' => ['admin', 'user'],
-                'default' => 'user',
+                'type' => 'INT',
+                'unsigned' => true,
+                'null' => false,
             ],
             'password_reset_token' => [
                 'type' => 'VARCHAR',
