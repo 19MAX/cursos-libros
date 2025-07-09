@@ -1,6 +1,9 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
+#tailwind config
+node_modules/
+public/css/output.css
 
 # OS X
 .DS_Store
