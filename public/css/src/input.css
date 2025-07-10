@@ -940,3 +940,131 @@
 .theme-transition-colors {
     @apply transition-colors duration-200;
 }
+
+/* ===== ESTILOS PERSONALIZADOS SIMPLE-DATATABLES ===== */
+
+/* Contenedor principal de la tabla */
+.datatable-wrapper {
+    @apply rounded-lg shadow-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-0 mb-6 transition-colors duration-300;
+}
+
+/* Cabecera de la tabla */
+.datatable-table thead {
+    @apply bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 uppercase text-xs font-semibold;
+}
+
+.datatable-table th {
+    @apply px-6 py-3 border-b border-gray-200 dark:border-gray-700 transition-colors duration-200 bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300;
+}
+
+/* Footer (barra inferior) */
+.datatable-pagination, .datatable-bottom {
+    @apply bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-700 rounded-b-lg transition-colors duration-200;
+}
+
+/* Filas y celdas */
+.datatable-table td {
+    @apply px-6 py-4 whitespace-nowrap text-gray-900 dark:text-white border-b border-gray-100 dark:border-gray-700 transition-colors duration-200;
+}
+
+.datatable-table tbody tr {
+    @apply bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200;
+}
+
+.datatable-table tbody tr:nth-child(even) {
+    @apply bg-gray-50 dark:bg-gray-700/50;
+}
+
+/* Barra superior (búsqueda y selector de filas) */
+.datatable-top {
+    @apply flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-4 py-3 bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-700 rounded-t-lg transition-colors duration-200;
+}
+
+.datatable-search {
+    @apply relative w-full md:w-64;
+}
+
+.datatable-search input[type="search"] {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 transition-colors duration-200 pl-10;
+}
+
+.datatable-search:before {
+    content: "";
+    @apply absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-no-repeat bg-center bg-contain;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="none" stroke="%236B7280" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>');
+    pointer-events: none;
+}
+
+.datatable-dropdown label {
+    @apply block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200 mb-0 mr-2;
+}
+
+.datatable-dropdown select {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 transition-colors duration-200;
+}
+
+/* Paginación */
+.datatable-pagination {
+    @apply flex flex-wrap items-center justify-end gap-1 px-4 py-3 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-700 rounded-b-lg transition-colors duration-200;
+}
+
+.datatable-pagination-list {
+    @apply flex gap-1;
+}
+
+.datatable-pagination-list li {
+    @apply inline-block;
+}
+
+.datatable-pagination-list a {
+    @apply text-blue-600 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300 font-medium rounded-lg text-sm px-3 py-1 text-center transition-all duration-200 cursor-pointer;
+}
+
+.datatable-pagination-list .active a {
+    @apply text-white bg-blue-600 border border-blue-600 dark:bg-blue-500 dark:border-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 rounded-lg font-bold;
+}
+
+.datatable-pagination-list a:focus {
+    @apply ring-2 ring-blue-300 dark:ring-blue-800 outline-none;
+}
+
+/* Mensaje de sin datos */
+.datatable-empty {
+    @apply text-center text-gray-500 dark:text-gray-400 py-8;
+}
+
+/* Botones de exportar (si existen) */
+.datatable-export, #exportDropdownButton {
+    @apply text-gray-700 bg-white hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 transition-all duration-200 ml-2;
+}
+
+/* Dropdown de exportar */
+#exportDropdown {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg transition-colors duration-200;
+}
+#exportDropdown ul {
+    @apply text-gray-700 dark:text-gray-300;
+}
+#exportDropdown button {
+    @apply hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 rounded-md transition-colors duration-200;
+}
+
+/* Ajustes para el modo oscuro en exportación (si el contenido exportado es HTML) */
+@media print {
+    .dark .datatable-table th,
+    .dark .datatable-table td {
+        color: #161616 !important;
+        background: #fff !important;
+    }
+}
+
+/* ===== FIN ESTILOS SIMPLE-DATATABLES ===== */
+
+/* ===== BARRAS PERSONALIZADAS PARA CONTROLES DE TABLA ===== */
+.admin-table-topbar {
+    @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-4 py-3 bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-700 rounded-t-lg transition-colors duration-200;
+}
+.admin-table-bottombar {
+    @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-4 py-3 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-700 rounded-b-lg transition-colors duration-200;
+}
+/* ===== FIN BARRAS PERSONALIZADAS ===== */
