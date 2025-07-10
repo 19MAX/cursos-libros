@@ -5,26 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->renderSection('title'); ?></title>
-
-    <!-- Script inline para evitar FOUC - DEBE ir antes del CSS -->
-    <script>
-        // Aplicar tema inmediatamente antes de que se muestre el contenido
-        (function () {
-            const theme = localStorage.getItem('color-theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            if (theme === 'dark' || (!theme && systemPrefersDark)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        })();
-    </script>
-
-    <?= $this->include('partials/auth/head-css') ?>
+    <?= $this->include('partials/global/head') ?>
 </head>
 
-<body id="bodyAuth" class="admin-container">
+<body class="admin-container">
 
     <!-- Botón de cambio de tema mejorado -->
     <button id="theme-toggle" type="button" class="admin-btn-icon fixed top-4 right-4 z-50" aria-label="Cambiar tema">
@@ -55,8 +39,7 @@
         </div>
     </footer>
 
-    <?= $this->include('partials/auth/scripts') ?>
-    <script src="<?= base_url('js/theme.js') ?>"></script>
+    <?= $this->include('partials/global/scripts') ?>
     <?= $this->renderSection('scripts'); ?>
 </body>
 
