@@ -32,6 +32,15 @@ $routes->group('admin', function ($routes) {
 
 });
 $routes->group('docente', function ($routes) {
-    $routes->get('', 'index');
+    $routes->get('', 'Docente\DashboardController::index');
 
+    // Rutas para capacitaciones
+    $routes->group('capacitaciones', function ($routes) {
+        $routes->get('', 'Docente\CapacitacionesController::index');
+        $routes->get('create', 'Docente\CapacitacionesController::create');
+        $routes->post('store', 'Docente\CapacitacionesController::store');
+        $routes->get('edit/(:num)', 'Docente\CapacitacionesController::edit/$1');
+        $routes->post('update/(:num)', 'Docente\CapacitacionesController::update/$1');
+        $routes->post('delete/(:num)', 'Docente\CapacitacionesController::delete/$1');
+    });
 });

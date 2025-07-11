@@ -82,6 +82,67 @@
     @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600 transition-colors duration-200;
 }
 
+/* Formularios mejorados */
+.admin-form-group {
+    @apply mb-6 transition-colors duration-200;
+}
+
+.admin-form-row {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 transition-colors duration-200;
+}
+
+.admin-form-row-3 {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-6 transition-colors duration-200;
+}
+
+.admin-form-actions {
+    @apply flex justify-end gap-4 pt-6 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200;
+}
+
+/* Estados de formulario */
+.admin-form-loading {
+    @apply opacity-50 pointer-events-none transition-opacity duration-200;
+}
+
+.admin-form-error {
+    @apply text-red-600 dark:text-red-400 text-sm mt-1 transition-colors duration-200;
+}
+
+.admin-form-success {
+    @apply text-green-600 dark:text-green-400 text-sm mt-1 transition-colors duration-200;
+}
+
+/* Mejoras para formularios */
+.admin-form-focus {
+    @apply ring-2 ring-blue-500/50 transition-all duration-200;
+}
+
+.admin-form-invalid {
+    @apply border-red-300 dark:border-red-600 focus:ring-red-500 focus:border-red-500 transition-colors duration-200;
+}
+
+.admin-form-valid {
+    @apply border-green-300 dark:border-green-600 focus:ring-green-500 focus:border-green-500 transition-colors duration-200;
+}
+
+/* Animaciones para formularios */
+.admin-form-fade-in {
+    @apply opacity-0 animate-pulse duration-300;
+}
+
+.admin-form-slide-up {
+    @apply transform translate-y-4 opacity-0 transition-all duration-300;
+}
+
+/* Estilos para campos de solo lectura */
+.admin-form-readonly {
+    @apply bg-gray-50 dark:bg-gray-700 cursor-not-allowed opacity-75 transition-all duration-200;
+}
+
+.admin-form-disabled {
+    @apply bg-gray-100 dark:bg-gray-800 cursor-not-allowed opacity-50 transition-all duration-200;
+}
+
 /* ===== BOTONES ===== */
 
 /* Botones principales */
@@ -468,23 +529,7 @@
     @apply px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-b-lg transition-colors duration-200;
 }
 
-/* ===== FORMULARIOS ===== */
 
-.admin-form-group {
-    @apply mb-4 transition-colors duration-200;
-}
-
-.admin-form-row {
-    @apply grid grid-cols-1 md:grid-cols-2 gap-4 transition-colors duration-200;
-}
-
-.admin-form-row-3 {
-    @apply grid grid-cols-1 md:grid-cols-3 gap-4 transition-colors duration-200;
-}
-
-.admin-form-actions {
-    @apply flex justify-end gap-2 pt-4 border-t border-gray-200 dark:border-gray-700 transition-colors duration-200;
-}
 
 /* ===== UTILIDADES ===== */
 
@@ -829,117 +874,7 @@
     @apply transition-opacity duration-200;
 }
 
-/* ===== CLASES LEGACY PARA COMPATIBILIDAD ===== */
 
-/* Mantener clases existentes para compatibilidad */
-.theme-input {
-    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:placeholder-gray-400 transition-colors duration-200;
-}
-
-.theme-input-with-icon {
-    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:placeholder-gray-400 transition-colors duration-200;
-}
-
-.theme-input-error {
-    @apply bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-600 text-red-900 dark:text-red-400 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5 dark:placeholder-red-400 transition-colors duration-200;
-}
-
-.theme-label {
-    @apply block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
-}
-
-.theme-label-required::after {
-    @apply text-red-500 dark:text-red-400;
-    content: " *";
-}
-
-.theme-btn-primary {
-    @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800 transition-all duration-200;
-}
-
-.theme-btn-secondary {
-    @apply text-gray-700 bg-white hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center border border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 transition-all duration-200;
-}
-
-.theme-btn-danger {
-    @apply text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-800 transition-all duration-200;
-}
-
-.theme-btn-success {
-    @apply text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800 transition-all duration-200;
-}
-
-.theme-btn-icon {
-    @apply p-2.5 rounded-lg transition-all duration-200;
-}
-
-.theme-card {
-    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
-}
-
-.theme-card-transparent {
-    @apply bg-white/90 dark:bg-gray-800/90 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm backdrop-blur-sm transition-colors duration-200;
-}
-
-.theme-card-hover {
-    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300;
-}
-
-.theme-text-primary {
-    @apply text-gray-900 dark:text-white transition-colors duration-200;
-}
-
-.theme-text-secondary {
-    @apply text-gray-600 dark:text-gray-300 transition-colors duration-200;
-}
-
-.theme-text-muted {
-    @apply text-gray-500 dark:text-gray-400 transition-colors duration-200;
-}
-
-.theme-text-accent {
-    @apply text-blue-600 dark:text-blue-400 transition-colors duration-200;
-}
-
-.theme-link {
-    @apply text-blue-600 hover:underline dark:text-blue-400 transition-colors duration-200;
-}
-
-.theme-container {
-    @apply min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300;
-}
-
-.theme-section {
-    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm transition-colors duration-200;
-}
-
-.theme-divider {
-    @apply border-gray-200 dark:border-gray-700 transition-colors duration-200;
-}
-
-.theme-alert-success {
-    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-green-50 border border-green-200 text-green-800 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400;
-}
-
-.theme-alert-error {
-    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-red-50 border border-red-200 text-red-800 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400;
-}
-
-.theme-alert-warning {
-    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-yellow-50 border border-yellow-200 text-yellow-800 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-400;
-}
-
-.theme-alert-info {
-    @apply p-4 mb-4 rounded-lg transition-colors duration-200 bg-blue-50 border border-blue-200 text-blue-800 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400;
-}
-
-.theme-transition {
-    @apply transition-all duration-300 ease-in-out;
-}
-
-.theme-transition-colors {
-    @apply transition-colors duration-200;
-}
 
 /* ===== ESTILOS PERSONALIZADOS SIMPLE-DATATABLES ===== */
 
@@ -1067,4 +1002,35 @@
 .admin-table-bottombar {
     @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 px-4 py-3 bg-gray-50 dark:bg-gray-700 border-t border-gray-200 dark:border-gray-700 rounded-b-lg transition-colors duration-200;
 }
+
+/* ===== DROPDOWN DE EXPORTACIÓN ===== */
+.export-dropdown {
+    @apply absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50 transition-all duration-200;
+}
+
+.export-dropdown-item {
+    @apply w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200;
+}
+
+.export-dropdown-item:first-child {
+    @apply rounded-t-lg;
+}
+
+.export-dropdown-item:last-child {
+    @apply rounded-b-lg;
+}
+
+.export-dropdown-item:hover {
+    @apply bg-gray-100 dark:bg-gray-700;
+}
+
+/* ===== BOTÓN DE EXPORTACIÓN ===== */
+.export-button {
+    @apply relative flex items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-600 focus:z-10 focus:outline-none focus:ring-4 focus:ring-blue-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-blue-400 dark:focus:ring-blue-800 transition-all duration-200;
+}
+
+.export-button:hover {
+    @apply border-blue-300 dark:border-blue-600;
+}
+
 /* ===== FIN BARRAS PERSONALIZADAS ===== */
