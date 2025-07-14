@@ -36,7 +36,7 @@ Modifica la información de tu capacitación
     </div>
     <div class="admin-card-body">
         <form action="<?= base_url('docente/capacitaciones/update/' . $capacitacion['id']) ?>" method="POST"
-            class="space-y-6">
+            class="space-y-6" enctype="multipart/form-data">
             <?= csrf_field() ?>
 
             <!-- Nombre de la Capacitación -->
@@ -143,6 +143,48 @@ Modifica la información de tu capacitación
                     caracteres)</p>
             </div>
 
+            <!-- Archivo de Certificado -->
+            <div class="admin-form-group">
+                <label for="file" class="admin-label admin-label-optional">
+                    <ion-icon name="document-outline" class="w-4 h-4 mr-2"></ion-icon>
+                    Certificado (Opcional)
+                </label>
+                
+                <!-- Mostrar archivo actual si existe -->
+                <?php if (!empty($capacitacion['certificado'])): ?>
+                    <div class="mb-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border">
+                        <div class="flex items-center space-x-3">
+                            <div class="flex-shrink-0">
+                                <i class="<?= getFileIcon($capacitacion['certificado']) ?> text-2xl"></i>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                    Archivo actual
+                                </p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    <?= basename($capacitacion['certificado']) ?>
+                                </p>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <a href="<?= getCapacitacionFile($capacitacion['certificado']) ?>" 
+                                   target="_blank" 
+                                   class="admin-btn-secondary text-xs">
+                                    <ion-icon name="eye-outline" class="w-3 h-3 mr-1"></ion-icon>
+                                    Ver
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <input type="file" id="file" name="file" class="admin-input" 
+                       accept=".pdf,.jpg,.jpeg,.png,.gif,.webp">
+                <p class="admin-text-secondary text-sm mt-1">
+                    Sube un nuevo certificado para reemplazar el actual. 
+                    Formatos permitidos: PDF, JPG, JPEG, PNG, GIF, WEBP (máximo 10MB)
+                </p>
+            </div>
+
             <!-- Información de Estado (solo lectura) -->
             <div class="admin-form-group">
                 <label class="admin-label">
@@ -231,6 +273,31 @@ Modifica la información de tu capacitación
             this.setCustomValidity('La duración debe ser al menos 1 hora');
         } else {
             this.setCustomValidity('');
+        }
+    });
+
+    // Validación de archivo
+    document.getElementById('file').addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            // Validar tamaño (10MB)
+            const maxSize = 10 * 1024 * 1024; // 10MB en bytes
+            if (file.size > maxSize) {
+                alert('El archivo excede el tamaño máximo de 10MB');
+                this.value = '';
+                return;
+            }
+
+            // Validar tipo de archivo
+            const allowedTypes = ['pdf', 'jpg', 'jpeg', 'png', 'gif', 'webp'];
+            const fileName = file.name.toLowerCase();
+            const fileExtension = fileName.split('.').pop();
+
+            if (!allowedTypes.includes(fileExtension)) {
+                alert('Tipo de archivo no permitido. Solo se permiten: PDF, JPG, JPEG, PNG, GIF, WEBP');
+                this.value = '';
+                return;
+            }
         }
     });
 </script>

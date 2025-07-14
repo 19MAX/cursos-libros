@@ -130,15 +130,13 @@ Gestiona tus capacitaciones y formación continua
                         <tr>
                             <td>
                                 <div class="flex items-center">
-                                    <div class="admin-avatar bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 mr-3">
-                                        <ion-icon name="library-outline" class="w-4 h-4"></ion-icon>
-                                    </div>
                                     <div>
                                         <div class="admin-text-primary font-medium">
                                             <?= esc($capacitacion['nombre_capacitacion']) ?>
                                         </div>
                                         <div class="admin-text-secondary text-sm">
-                                            <?= ucfirst($capacitacion['tipo_participacion']) ?> - <?= ucfirst($capacitacion['modalidad']) ?>
+                                            <?= ucfirst($capacitacion['tipo_participacion']) ?> -
+                                            <?= ucfirst($capacitacion['modalidad']) ?>
                                         </div>
                                     </div>
                                 </div>
@@ -171,31 +169,38 @@ Gestiona tus capacitaciones y formación continua
                             </td>
                             <td>
                                 <div class="flex items-center space-x-2">
-                                    <a href="<?= base_url('docente/capacitaciones/edit/' . $capacitacion['id']) ?>"
-                                        class="admin-btn-icon" title="Editar">
-                                        <ion-icon name="create-outline" class="w-4 h-4"></ion-icon>
-                                    </a>
-                                    <button type="button" class="admin-btn-icon text-red-600 hover:text-red-700"
-                                        onclick="confirmarEliminar(<?= $capacitacion['id'] ?>)" title="Eliminar">
-                                        <ion-icon name="trash-outline" class="w-4 h-4"></ion-icon>
-                                    </button>
+                                    <?php if ($capacitacion['estado'] === 'pendiente'): ?>
+                                        <a href="<?= base_url('docente/capacitaciones/edit/' . $capacitacion['id']) ?>"
+                                            class="admin-btn-icon" title="Editar">
+                                            <ion-icon name="create-outline" class="w-4 h-4"></ion-icon>
+                                        </a>
+                                        <button type="button" class="admin-btn-icon text-red-600 hover:text-red-700"
+                                            onclick="confirmarEliminar(<?= $capacitacion['id'] ?>)" title="Eliminar">
+                                            <ion-icon name="trash-outline" class="w-4 h-4"></ion-icon>
+                                        </button>
+                                    <?php else: ?>
+                                        <span class="text-sm text-gray-500 dark:text-gray-400">
+                                            <?php if ($capacitacion['estado'] === 'aprobado'): ?>
+                                                <ion-icon name="checkmark-circle-outline" class="w-4 h-4 text-green-500"
+                                                    title="Aprobado"></ion-icon>
+                                            <?php elseif ($capacitacion['estado'] === 'rechazado'): ?>
+                                                <ion-icon name="close-circle-outline" class="w-4 h-4 text-red-500"
+                                                    title="Rechazado"></ion-icon>
+                                            <?php endif; ?>
+                                        </span>
+                                    <?php endif; ?>
+
+                                    <!-- Botón para ver certificado -->
+                                    <?php if (!empty($capacitacion['certificado'])): ?>
+                                        <a href="<?= getCapacitacionFile($capacitacion['certificado']) ?>" target="_blank"
+                                            class="admin-btn-icon text-blue-600 hover:text-blue-700" title="Ver Certificado">
+                                            <ion-icon name="eye-outline" class="w-4 h-4"></ion-icon>
+                                        </a>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="8" class="text-center py-8">
-                            <div class="flex flex-col items-center">
-                                <ion-icon name="library-outline" class="w-12 h-12 text-gray-400 mb-2"></ion-icon>
-                                <p class="admin-text-secondary">No tienes capacitaciones registradas</p>
-                                <a href="<?= base_url('docente/capacitaciones/create') ?>"
-                                    class="admin-btn-primary mt-2">
-                                    Registrar Primera Capacitación
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
                 <?php endif; ?>
             </tbody>
         </table>

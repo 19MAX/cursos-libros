@@ -35,7 +35,7 @@ Registra una nueva capacitación o formación continua
         <p class="admin-text-secondary text-sm">Completa todos los campos requeridos</p>
     </div>
     <div class="admin-card-body">
-        <form action="<?= base_url('docente/capacitaciones/store') ?>" method="POST" class="space-y-6">
+        <form action="<?= base_url('docente/capacitaciones/store') ?>" method="POST"  enctype="multipart/form-data">
             <?= csrf_field() ?>
 
             <!-- Nombre de la Capacitación -->
@@ -106,16 +106,6 @@ Registra una nueva capacitación o formación continua
                 </div>
             </div>
 
-            <!-- Duración en Horas -->
-            <div class="admin-form-group">
-                <label for="duracion_horas" class="admin-label admin-label-required">
-                    <ion-icon name="time-outline" class="w-4 h-4 mr-2"></ion-icon>
-                    Duración en Horas
-                </label>
-                <input type="number" id="duracion_horas" name="duracion_horas" value="<?= old('duracion_horas') ?>"
-                    class="admin-input" placeholder="Ej: 40" min="1" required>
-                <p class="admin-text-secondary text-sm mt-1">Número total de horas de la capacitación</p>
-            </div>
 
             <!-- Fechas -->
             <div class="admin-form-row">
@@ -139,6 +129,35 @@ Registra una nueva capacitación o formación continua
                     <input type="date" id="fecha_fin" name="fecha_fin" value="<?= old('fecha_fin') ?>"
                         class="admin-input" required>
                     <p class="admin-text-secondary text-sm mt-1">Fecha de finalización de la capacitación</p>
+                </div>
+            </div>
+
+
+            <div class="admin-form-row">
+
+                <!-- Duración en Horas -->
+                <div class="admin-form-group">
+                    <label for="duracion_horas" class="admin-label admin-label-required">
+                        <ion-icon name="time-outline" class="w-4 h-4 mr-2"></ion-icon>
+                        Duración en Horas
+                    </label>
+                    <input type="number" id="duracion_horas" name="duracion_horas" value="<?= old('duracion_horas') ?>"
+                        class="admin-input" placeholder="Ej: 40" min="1" required>
+                    <p class="admin-text-secondary text-sm mt-1">Número total de horas de la capacitación</p>
+                </div>
+                <div class="admin-form-group">
+
+                    <label for="file" class="admin-label admin-label-required">
+                        <ion-icon name="time-outline" class="w-4 h-4 mr-2"></ion-icon>
+                        Subir archivo
+                    </label>
+                    <input
+                        class="admin-file-input"
+                        aria-describedby="file_input_help" id="file" type="file" name="file">
+                    <p class="admin-text-secondary text-sm mt-1" id="file_input">SVG, PNG, JPG or GIF
+                        (MAX. 800x400px).</p>
+
+
                 </div>
             </div>
 

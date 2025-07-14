@@ -73,20 +73,12 @@ class CreateCapacitacionesTable extends Migration
                 'type' => 'DATETIME',
                 'null' => true,
             ],
-            'deleted_at' => [
-                'type' => 'DATETIME',
-                'null' => true,
-            ],
             'created_by' => [
                 'type' => 'INT',
                 'null' => true,
                 'default' => 1,
             ],
             'updated_by' => [
-                'type' => 'INT',
-                'null' => true,
-            ],
-            'deleted_by' => [
                 'type' => 'INT',
                 'null' => true,
             ],

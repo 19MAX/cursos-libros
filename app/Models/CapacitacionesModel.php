@@ -10,7 +10,7 @@ class CapacitacionesModel extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = 'array';
-    protected $useSoftDeletes = true;
+    protected $useSoftDeletes = false; // Cambiado a false para eliminación definitiva
     protected $protectFields = true;
     protected $allowedFields = [
         'docente_id',
@@ -27,10 +27,8 @@ class CapacitacionesModel extends Model
         'descripcion',
         'created_at',
         'updated_at',
-        'deleted_at',
         'created_by',
-        'updated_by',
-        'deleted_by'
+        'updated_by'
     ];
 
     // Dates
@@ -38,7 +36,7 @@ class CapacitacionesModel extends Model
     protected $dateFormat = 'datetime';
     protected $createdField = 'created_at';
     protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
+    // Removido deletedField ya que no usamos soft deletes
 
     // Validation
     protected $validationRules = [
@@ -103,7 +101,7 @@ class CapacitacionesModel extends Model
     protected $allowCallbacks = true;
     protected $beforeInsert = ['setCreatedBy'];
     protected $beforeUpdate = ['setUpdatedBy'];
-    protected $beforeDelete = ['setDeletedBy'];
+    // Removido beforeDelete ya que no necesitamos setDeletedBy
 
     protected function setCreatedBy(array $data)
     {
@@ -117,14 +115,6 @@ class CapacitacionesModel extends Model
     {
         if (isset($data['data'])) {
             $data['data']['updated_by'] = session()->get('user_id') ?? 1;
-        }
-        return $data;
-    }
-
-    protected function setDeletedBy(array $data)
-    {
-        if (isset($data['data'])) {
-            $data['data']['deleted_by'] = session()->get('user_id') ?? 1;
         }
         return $data;
     }
