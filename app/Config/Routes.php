@@ -53,4 +53,14 @@ $routes->group('docente', function ($routes) {
         $routes->post('update/(:num)', 'Docente\LibrosController::update/$1');
         $routes->post('delete/(:num)', 'Docente\LibrosController::delete/$1');
     });
+
+    // Rutas para artículos
+    $routes->group('articulos', function ($routes) {
+        $routes->get('', 'Docente\ArticulosController::index');
+        $routes->get('create', 'Docente\ArticulosController::create');
+        $routes->post('store', 'Docente\ArticulosController::store');
+        $routes->get('edit/(:num)', 'Docente\ArticulosController::edit/$1');
+        $routes->post('update/(:num)', 'Docente\ArticulosController::update/$1');
+        $routes->post('delete/(:num)', 'Docente\ArticulosController::delete/$1');
+    });
 });

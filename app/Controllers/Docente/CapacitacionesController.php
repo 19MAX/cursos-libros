@@ -36,47 +36,6 @@ class CapacitacionesController extends BaseController
         // Obtener las capacitaciones del docente
         $capacitaciones = $capacitacionesModel->getCapacitacionesByDocente($docenteId);
 
-        // Si no hay capacitaciones, mostrar datos de ejemplo
-        if (empty($capacitaciones)) {
-            $capacitaciones = [
-                [
-                    'id' => 1,
-                    'nombre_capacitacion' => 'Programación Web Avanzada',
-                    'institucion_organizadora' => 'Universidad Nacional',
-                    'fecha_inicio' => '2024-01-15',
-                    'fecha_fin' => '2024-03-15',
-                    'duracion_horas' => 40,
-                    'puntaje_asignado' => 8.5,
-                    'estado' => 'aprobado',
-                    'tipo_participacion' => 'asistente',
-                    'modalidad' => 'virtual'
-                ],
-                [
-                    'id' => 2,
-                    'nombre_capacitacion' => 'Diseño UX/UI',
-                    'institucion_organizadora' => 'Instituto Tecnológico',
-                    'fecha_inicio' => '2024-02-01',
-                    'fecha_fin' => '2024-04-01',
-                    'duracion_horas' => 60,
-                    'puntaje_asignado' => 9.0,
-                    'estado' => 'pendiente',
-                    'tipo_participacion' => 'facilitador',
-                    'modalidad' => 'presencial'
-                ],
-                [
-                    'id' => 3,
-                    'nombre_capacitacion' => 'Gestión de Proyectos',
-                    'institucion_organizadora' => 'Centro de Capacitación',
-                    'fecha_inicio' => '2024-03-10',
-                    'fecha_fin' => '2024-05-10',
-                    'duracion_horas' => 80,
-                    'puntaje_asignado' => 7.5,
-                    'estado' => 'aprobado',
-                    'tipo_participacion' => 'ponente',
-                    'modalidad' => 'hibrida'
-                ]
-            ];
-        }
 
         // Obtener estadísticas
         $estadisticas = $capacitacionesModel->getEstadisticasByDocente($docenteId);

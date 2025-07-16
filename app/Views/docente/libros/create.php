@@ -35,13 +35,6 @@
                     </label>
                     <input type="text" id="titulo_libro" name="titulo_libro" value="<?= old('titulo_libro') ?>" class="admin-input" placeholder="Ej: Introducción a la Física" required>
                 </div>
-                <div class="admin-form-group">
-                    <label for="subtitulo" class="admin-label">
-                        <ion-icon name="book-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Subtítulo
-                    </label>
-                    <input type="text" id="subtitulo" name="subtitulo" value="<?= old('subtitulo') ?>" class="admin-input" placeholder="Ej: Conceptos y Aplicaciones">
-                </div>
             </div>
             <div class="admin-form-row">
                 <div class="admin-form-group">
@@ -81,14 +74,6 @@
                         ISBN
                     </label>
                     <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" class="admin-input" placeholder="Ej: 978-3-16-148410-0">
-                </div>
-                <div class="admin-form-group">
-                    <label for="citas_referenciadas" class="admin-label admin-label-required">
-                        <ion-icon name="bookmarks-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Citas Referenciadas
-                    </label>
-                    <input type="number" id="citas_referenciadas" name="citas_referenciadas" value="<?= old('citas_referenciadas', 0) ?>" class="admin-input" min="0" required>
-                    <p class="admin-text-secondary text-sm mt-1">Número de veces que el libro ha sido citado (0 si no aplica).</p>
                 </div>
             </div>
             <div class="admin-form-row">

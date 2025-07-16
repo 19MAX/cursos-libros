@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateLibrosTable extends Migration
+class CreateTableArticulos extends Migration
 {
     public function up()
     {
@@ -20,44 +20,39 @@ class CreateLibrosTable extends Migration
                 'constraint' => 11,
                 'unsigned' => true,
             ],
-            'titulo_libro' => [
+            'titulo_articulo' => [
                 'type' => 'VARCHAR',
                 'constraint' => 500,
                 'null' => false,
-            ],
-            'subtitulo' => [
-                'type' => 'VARCHAR',
-                'constraint' => 500,
-                'null' => true,
             ],
             'autores' => [
                 'type' => 'TEXT',
                 'null' => false,
-                'comment' => 'Lista de autores del libro',
+                'comment' => 'Lista de autores del artículo',
             ],
-            'editorial' => [
+            'revista' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => false,
             ],
-            'isbn' => [
+            'issn' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'null' => true,
             ],
-            'isbn_electronico' => [
+            'volumen' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'null' => true,
             ],
-            'edicion' => [
+            'numero' => [
                 'type' => 'VARCHAR',
                 'constraint' => 50,
                 'null' => true,
             ],
-            'numero_paginas' => [
-                'type' => 'INT',
-                'constraint' => 11,
+            'paginas' => [
+                'type' => 'VARCHAR',
+                'constraint' => 50,
                 'null' => true,
             ],
             'fecha_publicacion' => [
@@ -69,15 +64,45 @@ class CreateLibrosTable extends Migration
                 'constraint' => 100,
                 'null' => true,
             ],
-            'ciudad_publicacion' => [
+            'tipo_revision' => [
+                'type' => 'ENUM',
+                'constraint' => [
+                    'Revisión doble ciego (Double-blind review)',
+                    'Revisión simple ciego (Single-blind review)',
+                    'Revisión abierta (Open review)',
+                    'Revisión colaborativa (Collaborative review)',
+                    'Revisión por la comunidad o post-publicación (Public/Community review)',
+                    'Revisión editorial (Editorial review)'
+                ],
+                'null' => false,
+                'comment' => 'Tipo de revisión del artículo',
+            ],
+            'tipo_articulo' => [
+                'type' => 'ENUM',
+                'constraint' => [
+                    'Artículo de investigación',
+                    'Artículo de revisión',
+                    'Preprint',
+                    'Artículo técnico',
+                    'Artículo de opinión / ensayo',
+                    'Estudio de caso',
+                    'Meta-análisis'
+                ],
+                'null' => false,
+                'comment' => 'Tipo de artículo',
+            ],
+            'cuartil' => [
+                'type' => 'ENUM',
+                'constraint' => ['Q1', 'Q2', 'Q3', 'Q4'],
+                'default' => 'Q1',
+                'null' => false,
+                'comment' => 'Cuartil de la revista',
+            ],
+            'doi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,
                 'null' => true,
-            ],
-            'tipo_libro' => [
-                'type' => 'ENUM',
-                'constraint' => ['libro_completo', 'capitulo_libro', 'libro_texto', 'libro_cientifico', 'libro_tecnico', 'otros'],
-                'default' => 'libro_completo',
+                'comment' => 'DOI del artículo',
             ],
             'area_conocimiento' => [
                 'type' => 'VARCHAR',
@@ -98,54 +123,34 @@ class CreateLibrosTable extends Migration
                 'null' => true,
                 'comment' => 'Palabras clave separadas por comas',
             ],
-            'indice' => [
-                'type' => 'TEXT',
-                'null' => true,
-                'comment' => 'Índice del libro',
-            ],
-            'prologo' => [
-                'type' => 'TEXT',
-                'null' => true,
-            ],
-            'enlace_editorial' => [
+            'enlace_revista' => [
                 'type' => 'VARCHAR',
                 'constraint' => 500,
                 'null' => true,
             ],
-            'archivo_libro' => [
+            'archivo_articulo' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
-                'comment' => 'Archivo PDF o digital del libro',
+                'comment' => 'Archivo PDF o digital del artículo',
             ],
-            'portada_libro' => [
+            'portada_articulo' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
-                'comment' => 'Imagen de la portada del libro',
+                'comment' => 'Imagen del Certificado de publicación / Aceptación',
             ],
-            'certificacion_editorial' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => true,
-                'comment' => 'Certificación de la editorial',
-            ],
-            'impacto_academico' => [
-                'type' => 'TEXT',
-                'null' => true,
-                'comment' => 'Descripción del impacto académico del libro',
-            ],
-            'puntaje_asignado' => [
+            'factor_impacto' => [
                 'type' => 'DECIMAL',
-                'constraint' => '5,2',
-                'default' => 0.00,
+                'constraint' => '10,2',
+                'comment' => 'Factor de impacto numérico',
             ],
             'estado' => [
                 'type' => 'ENUM',
                 'constraint' => ['pendiente', 'aprobado', 'rechazado'],
                 'default' => 'pendiente',
             ],
-            'observaciones' => [
+            'descripcion_articulo' => [
                 'type' => 'TEXT',
                 'null' => true,
             ],
@@ -178,13 +183,13 @@ class CreateLibrosTable extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addKey('docente_id');
-        $this->forge->addKey('isbn');
+        $this->forge->addKey('issn');
         $this->forge->addForeignKey('docente_id', 'users', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('libros');
+        $this->forge->createTable('articulos');
     }
 
     public function down()
     {
-        $this->forge->dropTable('libros');
+        $this->forge->dropTable('articulos');
     }
 }

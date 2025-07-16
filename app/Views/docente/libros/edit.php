@@ -35,13 +35,6 @@
                     </label>
                     <input type="text" id="titulo_libro" name="titulo_libro" value="<?= old('titulo_libro', $libro['titulo_libro']) ?>" class="admin-input" required>
                 </div>
-                <div class="admin-form-group">
-                    <label for="subtitulo" class="admin-label">
-                        <ion-icon name="book-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Subtítulo
-                    </label>
-                    <input type="text" id="subtitulo" name="subtitulo" value="<?= old('subtitulo', $libro['subtitulo']) ?>" class="admin-input">
-                </div>
             </div>
             <div class="admin-form-row">
                 <div class="admin-form-group">

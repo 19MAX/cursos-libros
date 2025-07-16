@@ -15,7 +15,7 @@ class UsersSeeder extends Seeder
                 'surname' => 'PRUEBA',
                 'username' => 'admin',
                 'email' => 'admin@prueba.com',
-                'password' => password_hash('admin123', PASSWORD_DEFAULT),
+                'password' => password_hash('password', PASSWORD_DEFAULT),
                 'role' => 1,
                 'created_at' => date('Y-m-d H:i:s'),
             ],

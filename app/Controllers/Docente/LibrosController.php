@@ -114,7 +114,6 @@ class LibrosController extends BaseController
             'enlace_editorial' => $this->request->getPost('enlace_editorial'),
             'certificacion_editorial' => $this->request->getPost('certificacion_editorial'),
             'impacto_academico' => $this->request->getPost('impacto_academico'),
-            'citas_referenciadas' => $this->request->getPost('citas_referenciadas'),
             'puntaje_asignado' => 0.00,
             'estado' => 'pendiente',
             'observaciones' => $this->request->getPost('observaciones'),
@@ -255,7 +254,6 @@ class LibrosController extends BaseController
             'enlace_editorial' => $this->request->getPost('enlace_editorial'),
             'certificacion_editorial' => $this->request->getPost('certificacion_editorial'),
             'impacto_academico' => $this->request->getPost('impacto_academico'),
-            'citas_referenciadas' => $this->request->getPost('citas_referenciadas'),
             'observaciones' => $this->request->getPost('observaciones'),
             'updated_by' => $docenteId
         ];

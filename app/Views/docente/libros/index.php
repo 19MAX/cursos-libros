@@ -193,8 +193,6 @@ foreach ($libros as $libro) {
                             </td>
                         </tr>
                     <?php endforeach; ?>
-                <?php else: ?>
-                    <tr><td colspan="9" class="text-center py-4">No hay libros registrados.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>

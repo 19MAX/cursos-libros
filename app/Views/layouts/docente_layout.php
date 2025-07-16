@@ -90,6 +90,33 @@
                     </div>
                 </div>
 
+                <!-- Artículos - Con subniveles (Docente) -->
+                <div class="admin-sidebar-group-item" data-title="Artículos">
+                    <button type="button"
+                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'articulos') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                        onclick="toggleSubmenu('articulos-submenu')" data-title="Artículos">
+                        <ion-icon name="document-text-outline" class="admin-nav-item-icon"></ion-icon>
+                        <span class="sidebar-text">Artículos</span>
+                        <ion-icon name="chevron-down-outline"
+                            class="admin-nav-item-icon ml-auto submenu-arrow"></ion-icon>
+                    </button>
+                    <div id="articulos-submenu"
+                        class="admin-submenu <?= strpos(current_url(), 'articulos') !== false ? 'admin-submenu-open' : '' ?>">
+                        <a href="<?= base_url('docente/articulos') ?>"
+                            class="admin-submenu-item <?= current_url() == base_url('docente/articulos') ? 'admin-submenu-item-active' : '' ?>"
+                            data-title="Mis Artículos">
+                            <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
+                            <span class="sidebar-text">Mis Artículos</span>
+                        </a>
+                        <a href="<?= base_url('docente/articulos/create') ?>"
+                            class="admin-submenu-item <?= current_url() == base_url('docente/articulos/create') ? 'admin-submenu-item-active' : '' ?>"
+                            data-title="Agregar Artículo">
+                            <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
+                            <span class="sidebar-text">Agregar</span>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="admin-sidebar-divider sidebar-text"></div>
 
                 <div class="admin-sidebar-group sidebar-text">Configuración</div>
