@@ -63,35 +63,29 @@
                     </div>
                 </div>
 
-                <!-- Libros - Con subniveles -->
+                <!-- Libros - Con subniveles (Docente) -->
                 <div class="admin-sidebar-group-item" data-title="Libros">
                     <button type="button"
-                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'books') !== false ? 'admin-sidebar-item-active' : '' ?>"
-                        onclick="toggleSubmenu('books-submenu')" data-title="Libros">
+                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'libros') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                        onclick="toggleSubmenu('libros-submenu')" data-title="Libros">
                         <ion-icon name="book-outline" class="admin-nav-item-icon"></ion-icon>
                         <span class="sidebar-text">Libros</span>
                         <ion-icon name="chevron-down-outline"
                             class="admin-nav-item-icon ml-auto submenu-arrow"></ion-icon>
                     </button>
-                    <div id="books-submenu"
-                        class="admin-submenu <?= strpos(current_url(), 'books') !== false ? 'admin-submenu-open' : '' ?>">
-                        <a href="<?= base_url('admin/books') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/books') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Lista de Libros">
+                    <div id="libros-submenu"
+                        class="admin-submenu <?= strpos(current_url(), 'libros') !== false ? 'admin-submenu-open' : '' ?>">
+                        <a href="<?= base_url('docente/libros') ?>"
+                            class="admin-submenu-item <?= current_url() == base_url('docente/libros') ? 'admin-submenu-item-active' : '' ?>"
+                            data-title="Mis Libros">
                             <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Lista</span>
+                            <span class="sidebar-text">Mis Libros</span>
                         </a>
-                        <a href="<?= base_url('admin/books/create') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/books/create') ? 'admin-submenu-item-active' : '' ?>"
+                        <a href="<?= base_url('docente/libros/create') ?>"
+                            class="admin-submenu-item <?= current_url() == base_url('docente/libros/create') ? 'admin-submenu-item-active' : '' ?>"
                             data-title="Agregar Libro">
                             <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
                             <span class="sidebar-text">Agregar</span>
-                        </a>
-                        <a href="<?= base_url('admin/books/categories') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/books/categories') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Categorías">
-                            <ion-icon name="folder-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Categorías</span>
                         </a>
                     </div>
                 </div>

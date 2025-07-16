@@ -4,6 +4,9 @@
 #tailwind config
 node_modules/
 public/css/output.css
+#uploads
+
+public/uploads
 
 # OS X
 .DS_Store

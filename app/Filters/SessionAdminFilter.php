@@ -27,7 +27,7 @@ class SessionAdminFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (session('rol')!=RolesOptions::Admin) {
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(base_url('auth/login'));
         }
     }
 

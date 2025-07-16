@@ -285,4 +285,112 @@ if (!function_exists('getFileIcon')) {
     }
 }
 
+if (!function_exists('uploadLibroFile')) {
+    /**
+     * Sube archivos (PDFs o imágenes) para libros.
+     * @param \CodeIgniter\HTTP\Files\UploadedFile $file Archivo subido.
+     * @param int $docenteId ID del docente.
+     * @param string $tipo Tipo de archivo: 'libro' o 'portada'.
+     * @return array Resultado con éxito/error y ruta del archivo.
+     */
+    function uploadLibroFile($file, $docenteId, $tipo = 'libro')
+    {
+        if (!$file || !$file->isValid() || $file->hasMoved()) {
+            return ['success' => false, 'message' => 'Archivo no válido o ya procesado'];
+        }
+        $folder = $tipo === 'portada' ? 'portadas' : 'libros';
+        $uploadPath = ROOTPATH . 'public/uploads/' . $docenteId . '/' . $folder . '/';
+        if (!is_dir($uploadPath)) {
+            if (!mkdir($uploadPath, 0755, true)) {
+                return ['success' => false, 'message' => 'Error al crear el directorio de destino'];
+            }
+        }
+        $allowedTypes = $tipo === 'portada' ? ['jpg', 'jpeg', 'png', 'gif', 'webp'] : ['pdf'];
+        $extension = strtolower($file->getClientExtension());
+        if (!in_array($extension, $allowedTypes)) {
+            return [
+                'success' => false,
+                'message' => $tipo === 'portada' ? 'Solo se permiten imágenes (JPG, PNG, GIF, WEBP)' : 'Solo se permite PDF para el libro'
+            ];
+        }
+        $maxSize = $tipo === 'portada' ? 5 * 1024 * 1024 : 20 * 1024 * 1024; // 5MB portada, 20MB libro
+        if ($file->getSize() > $maxSize) {
+            return [
+                'success' => false,
+                'message' => $tipo === 'portada' ? 'La portada no debe exceder 5MB' : 'El archivo no debe exceder 20MB'
+            ];
+        }
+        try {
+            $timestamp = time();
+            $fileName = $tipo . '_' . $timestamp . '.' . $extension;
+            if (!$file->move($uploadPath, $fileName)) {
+                return [
+                    'success' => false,
+                    'message' => 'Error al mover el archivo al directorio de destino'
+                ];
+            }
+            $fullPath = $uploadPath . $fileName;
+            if (!file_exists($fullPath)) {
+                return [
+                    'success' => false,
+                    'message' => 'Error: El archivo no se guardó correctamente'
+                ];
+            }
+            $relativePath = 'uploads/' . $docenteId . '/' . $folder . '/' . $fileName;
+            return [
+                'success' => true,
+                'path' => $relativePath,
+                'filename' => $fileName,
+                'message' => 'Archivo subido exitosamente'
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'message' => 'Error al subir el archivo: ' . $e->getMessage()
+            ];
+        }
+    }
+}
+
+if (!function_exists('deleteLibroFile')) {
+    /**
+     * Elimina un archivo de libro del servidor.
+     * @param string $filePath Ruta del archivo a eliminar.
+     * @return bool
+     */
+    function deleteLibroFile($filePath)
+    {
+        if (empty($filePath)) return false;
+        $fullPath = FCPATH . $filePath;
+        if (file_exists($fullPath)) {
+            try {
+                return unlink($fullPath);
+            } catch (\Exception $e) {
+                log_message('error', 'Error deleting libro file: ' . $e->getMessage());
+                return false;
+            }
+        }
+        return false;
+    }
+}
+
+if (!function_exists('getLibroFile')) {
+    /**
+     * Obtiene la URL completa de un archivo de libro.
+     * @param string $filePath Ruta del archivo almacenada en BD.
+     * @return string URL del archivo o archivo por defecto.
+     */
+    function getLibroFile($filePath = null)
+    {
+        $defaultFile = 'assets/images/default-document.png';
+        if (!empty($filePath)) {
+            $fullPath = FCPATH . $filePath;
+            if (file_exists($fullPath)) {
+                return base_url($filePath);
+            }
+        }
+        return base_url($defaultFile);
+    }
+}
+
 ?>

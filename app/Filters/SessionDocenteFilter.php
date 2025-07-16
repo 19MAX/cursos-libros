@@ -27,7 +27,7 @@ class SessionDocenteFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (session('rol')!=RolesOptions::Docente) {
-            return redirect()->to(base_url('/login'));
+            return redirect()->to(base_url('auth/login'));
         }
     }
 

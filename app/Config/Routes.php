@@ -43,4 +43,14 @@ $routes->group('docente', function ($routes) {
         $routes->post('update/(:num)', 'Docente\CapacitacionesController::update/$1');
         $routes->post('delete/(:num)', 'Docente\CapacitacionesController::delete/$1');
     });
+
+    // Rutas para libros
+    $routes->group('libros', function ($routes) {
+        $routes->get('', 'Docente\LibrosController::index');
+        $routes->get('create', 'Docente\LibrosController::create');
+        $routes->post('store', 'Docente\LibrosController::store');
+        $routes->get('edit/(:num)', 'Docente\LibrosController::edit/$1');
+        $routes->post('update/(:num)', 'Docente\LibrosController::update/$1');
+        $routes->post('delete/(:num)', 'Docente\LibrosController::delete/$1');
+    });
 });
