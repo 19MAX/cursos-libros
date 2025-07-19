@@ -29,7 +29,7 @@ Registra un nuevo artículo científico o académico
     </div>
 <?php endif; ?>
 
-<div class="admin-card max-w-3xl mx-auto">
+<div class="admin-card">
     <div class="admin-card-header">
         <h3 class="text-lg font-semibold admin-text-primary">Información del Artículo</h3>
         <p class="admin-text-secondary text-sm">Completa todos los campos requeridos</p>
@@ -47,27 +47,26 @@ Registra un nuevo artículo científico o académico
                         value="<?= old('titulo_articulo') ?>" required>
                     <p class="admin-text-secondary text-sm mt-1">Título principal del artículo</p>
                 </div>
-            </div>
-            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="autores" class="admin-label admin-label-required">
                         <ion-icon name="people-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Autores
                     </label>
-                    <textarea name="autores" id="autores" class="admin-textarea"
+                    <textarea name="autores" id="autores" class="admin-textarea" rows="1"
                         required><?= old('autores') ?></textarea>
                     <p class="admin-text-secondary text-sm mt-1">Lista de autores separados por coma</p>
                 </div>
+            </div>
+
+            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="revista" class="admin-label admin-label-required">
                         <ion-icon name="book-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Revista
+                        Nombre de revista
                     </label>
                     <input type="text" name="revista" id="revista" class="admin-input" value="<?= old('revista') ?>"
                         required>
                 </div>
-            </div>
-            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="issn" class="admin-label">
                         <ion-icon name="barcode-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -75,6 +74,9 @@ Registra un nuevo artículo científico o académico
                     </label>
                     <input type="text" name="issn" id="issn" class="admin-input" value="<?= old('issn') ?>">
                 </div>
+            </div>
+
+            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="volumen" class="admin-label">
                         <ion-icon name="layers-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -89,6 +91,9 @@ Registra un nuevo artículo científico o académico
                     </label>
                     <input type="text" name="numero" id="numero" class="admin-input" value="<?= old('numero') ?>">
                 </div>
+            </div>
+
+            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="paginas" class="admin-label">
                         <ion-icon name="document-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -96,8 +101,6 @@ Registra un nuevo artículo científico o académico
                     </label>
                     <input type="text" name="paginas" id="paginas" class="admin-input" value="<?= old('paginas') ?>">
                 </div>
-            </div>
-            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="fecha_publicacion" class="admin-label admin-label-required">
                         <ion-icon name="calendar-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -106,6 +109,9 @@ Registra un nuevo artículo científico o académico
                     <input type="date" name="fecha_publicacion" id="fecha_publicacion" class="admin-input"
                         value="<?= old('fecha_publicacion') ?>" required>
                 </div>
+            </div>
+
+            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="pais_publicacion" class="admin-label">
                         <ion-icon name="flag-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -114,8 +120,6 @@ Registra un nuevo artículo científico o académico
                     <input type="text" name="pais_publicacion" id="pais_publicacion" class="admin-input"
                         value="<?= old('pais_publicacion') ?>">
                 </div>
-            </div>
-            <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="tipo_revision" class="admin-label admin-label-required">
                         <ion-icon name="eye-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -137,32 +141,30 @@ Registra un nuevo artículo científico o académico
                         </option>
                     </select>
                 </div>
-                <div class="admin-form-group">
-                    <label for="tipo_articulo" class="admin-label admin-label-required">
-                        <ion-icon name="document-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Tipo de Artículo
-                    </label>
-                    <select name="tipo_articulo" id="tipo_articulo" class="admin-select" required>
-                        <option value="">Selecciona el tipo de artículo</option>
-                        <option value="Artículo de investigación" <?= old('tipo_articulo') == 'Artículo de investigación' ? 'selected' : '' ?>>Artículo de investigación</option>
-                        <option value="Artículo de revisión" <?= old('tipo_articulo') == 'Artículo de revisión' ? 'selected' : '' ?>>Artículo de revisión</option>
-                        <option value="Preprint" <?= old('tipo_articulo') == 'Preprint' ? 'selected' : '' ?>>Preprint
-                        </option>
-                        <option value="Artículo técnico" <?= old('tipo_articulo') == 'Artículo técnico' ? 'selected' : '' ?>>Artículo técnico</option>
-                        <option value="Artículo de opinión / ensayo" <?= old('tipo_articulo') == 'Artículo de opinión / ensayo' ? 'selected' : '' ?>>Artículo de opinión / ensayo</option>
-                        <option value="Estudio de caso" <?= old('tipo_articulo') == 'Estudio de caso' ? 'selected' : '' ?>>
-                            Estudio de caso</option>
-                        <option value="Meta-análisis" <?= old('tipo_articulo') == 'Meta-análisis' ? 'selected' : '' ?>>
-                            Meta-análisis</option>
-                    </select>
-                </div>
-
             </div>
 
-
+            <div class="admin-form-group">
+                <label for="tipo_articulo" class="admin-label admin-label-required">
+                    <ion-icon name="document-outline" class="w-4 h-4 mr-2"></ion-icon>
+                    Tipo de Artículo
+                </label>
+                <select name="tipo_articulo" id="tipo_articulo" class="admin-select" required>
+                    <option value="">Selecciona el tipo de artículo</option>
+                    <option value="Artículo de investigación" <?= old('tipo_articulo') == 'Artículo de investigación' ? 'selected' : '' ?>>Artículo de investigación</option>
+                    <option value="Artículo de revisión" <?= old('tipo_articulo') == 'Artículo de revisión' ? 'selected' : '' ?>>Artículo de revisión</option>
+                    <option value="Preprint" <?= old('tipo_articulo') == 'Preprint' ? 'selected' : '' ?>>Preprint
+                    </option>
+                    <option value="Artículo técnico" <?= old('tipo_articulo') == 'Artículo técnico' ? 'selected' : '' ?>>
+                        Artículo técnico</option>
+                    <option value="Artículo de opinión / ensayo" <?= old('tipo_articulo') == 'Artículo de opinión / ensayo' ? 'selected' : '' ?>>Artículo de opinión / ensayo</option>
+                    <option value="Estudio de caso" <?= old('tipo_articulo') == 'Estudio de caso' ? 'selected' : '' ?>>
+                        Estudio de caso</option>
+                    <option value="Meta-análisis" <?= old('tipo_articulo') == 'Meta-análisis' ? 'selected' : '' ?>>
+                        Meta-análisis</option>
+                </select>
+            </div>
 
             <div class="admin-form-row-3">
-
                 <div class="admin-form-group admin-form-group-1">
                     <label for="cuartil" class="admin-label admin-label-required">
                         <ion-icon name="podium-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -176,7 +178,6 @@ Registra un nuevo artículo científico o académico
                         <option value="Q4" <?= old('cuartil') == 'Q4' ? 'selected' : '' ?>>Q4</option>
                     </select>
                 </div>
-
                 <div class="admin-form-group admin-form-group-1">
                     <label for="factor_impacto" class="admin-label">
                         <ion-icon name="trending-up-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -186,7 +187,6 @@ Registra un nuevo artículo científico o académico
                         value="<?= old('factor_impacto') ?>">
 
                 </div>
-
                 <div class="admin-form-group admin-form-group-1">
                     <label for="doi" class="admin-label">
                         <ion-icon name="link-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -196,44 +196,52 @@ Registra un nuevo artículo científico o académico
                 </div>
             </div>
 
-            <div class="admin-form-row">
-                <div class="admin-form-group">
-                    <label for="area_conocimiento" class="admin-label">
+            <div class="admin-form-row-3">
+                <div class="admin-form-group admin-form-group-1">
+                    <label for="campo_amplio" class="admin-label">
                         <ion-icon name="school-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Área de Conocimiento
+
+                        Campo Amplio
                     </label>
-                    <select name="area_conocimiento" id="area_conocimiento" class="admin-select">
-                        <option value="">Selecciona el área de conocimiento</option>
-                        <option value="CIENCIAS NATURALES" <?= old('area_conocimiento') == 'CIENCIAS NATURALES' ? 'selected' : '' ?>>CIENCIAS NATURALES</option>
-                        <option value="CIENCIAS FORMALES Y APLICADAS" <?= old('area_conocimiento') == 'CIENCIAS FORMALES Y APLICADAS' ? 'selected' : '' ?>>CIENCIAS FORMALES Y APLICADAS</option>
-                        <option value="INGENIERÍA Y TECNOLOGÍA" <?= old('area_conocimiento') == 'INGENIERÍA Y TECNOLOGÍA' ? 'selected' : '' ?>>INGENIERÍA Y TECNOLOGÍA</option>
-                        <option value="CIENCIAS SOCIALES" <?= old('area_conocimiento') == 'CIENCIAS SOCIALES' ? 'selected' : '' ?>>CIENCIAS SOCIALES</option>
-                        <option value="CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS" <?= old('area_conocimiento') == 'CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS' ? 'selected' : '' ?>>CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS</option>
-                        <option value="CIENCIAS DE LA SALUD Y MEDICINA" <?= old('area_conocimiento') == 'CIENCIAS DE LA SALUD Y MEDICINA' ? 'selected' : '' ?>>CIENCIAS DE LA SALUD Y MEDICINA</option>
-                        <option value="HUMANIDADES" <?= old('area_conocimiento') == 'HUMANIDADES' ? 'selected' : '' ?>>HUMANIDADES</option>
-                        <option value="ARTES Y COMUNICACIÓN" <?= old('area_conocimiento') == 'ARTES Y COMUNICACIÓN' ? 'selected' : '' ?>>ARTES Y COMUNICACIÓN</option>
-                        <option value="INTERDISCIPLINARIAS Y EMERGENTES" <?= old('area_conocimiento') == 'INTERDISCIPLINARIAS Y EMERGENTES' ? 'selected' : '' ?>>INTERDISCIPLINARIAS Y EMERGENTES</option>
+                    <select name="campo_amplio" id="campo_amplio" class="admin-select">
+                        <option value="">Selecciona el campo amplio</option>
+                        <option value="Educación">Educación</option>
+                        <option value="Artes y humanidades">Artes y humanidades</option>
+                        <option value="Ciencias sociales, periodismo, información y derecho">Ciencias sociales,
+                            periodismo, información y derecho</option>
+                        <option value="Administración">Administración</option>
+                        <option value="Ciencias naturales, matemáticas y estadísticas">Ciencias naturales, matemáticas y
+                            estadísticas</option>
+                        <option value="Tecnologías de la información y la comunicación (TIC)">Tecnologías de la
+                            información y la comunicación (TIC)</option>
+                        <option value="Ingeniería, industria y construcción">Ingeniería, industria y construcción
+                        </option>
+                        <option value="Agricultura, silvicultura, pesca y veterinaria">Agricultura, silvicultura, pesca
+                            y veterinaria</option>
+                        <option value="Salud y Bienestar">Salud y Bienestar</option>
+                        <option value="Servicios">Servicios</option>
                     </select>
                 </div>
-                <div class="admin-form-group">
-                    <label for="disciplina" class="admin-label">
+                <div class="admin-form-group admin-form-group-1">
+                    <label for="campo_especifico" class="admin-label">
                         <ion-icon name="git-branch-outline" class="w-4 h-4 mr-2"></ion-icon>
-                        Disciplina
+                        Campo Específico
                     </label>
-                    <select name="disciplina" id="disciplina" class="admin-select">
-                        <option value="">Selecciona la disciplina</option>
-                        <option value="CIENCIAS NATURALES" <?= old('disciplina') == 'CIENCIAS NATURALES' ? 'selected' : '' ?>>CIENCIAS NATURALES</option>
-                        <option value="CIENCIAS FORMALES Y APLICADAS" <?= old('disciplina') == 'CIENCIAS FORMALES Y APLICADAS' ? 'selected' : '' ?>>CIENCIAS FORMALES Y APLICADAS</option>
-                        <option value="INGENIERÍA Y TECNOLOGÍA" <?= old('disciplina') == 'INGENIERÍA Y TECNOLOGÍA' ? 'selected' : '' ?>>INGENIERÍA Y TECNOLOGÍA</option>
-                        <option value="CIENCIAS SOCIALES" <?= old('disciplina') == 'CIENCIAS SOCIALES' ? 'selected' : '' ?>>CIENCIAS SOCIALES</option>
-                        <option value="CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS" <?= old('disciplina') == 'CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS' ? 'selected' : '' ?>>CIENCIAS ECONÓMICAS Y ADMINISTRATIVAS</option>
-                        <option value="CIENCIAS DE LA SALUD Y MEDICINA" <?= old('disciplina') == 'CIENCIAS DE LA SALUD Y MEDICINA' ? 'selected' : '' ?>>CIENCIAS DE LA SALUD Y MEDICINA</option>
-                        <option value="HUMANIDADES" <?= old('disciplina') == 'HUMANIDADES' ? 'selected' : '' ?>>HUMANIDADES</option>
-                        <option value="ARTES Y COMUNICACIÓN" <?= old('disciplina') == 'ARTES Y COMUNICACIÓN' ? 'selected' : '' ?>>ARTES Y COMUNICACIÓN</option>
-                        <option value="INTERDISCIPLINARIAS Y EMERGENTES" <?= old('disciplina') == 'INTERDISCIPLINARIAS Y EMERGENTES' ? 'selected' : '' ?>>INTERDISCIPLINARIAS Y EMERGENTES</option>
+                    <select name="campo_especifico" id="campo_especifico" class="admin-select" disabled>
+                        <option value="">Selecciona el campo específico</option>
+                    </select>
+                </div>
+                <div class="admin-form-group admin-form-group-1">
+                    <label for="campo_detallado" class="admin-label">
+                        <ion-icon name="list-outline" class="w-4 h-4 mr-2"></ion-icon>
+                        Campo Detallado
+                    </label>
+                    <select name="campo_detallado" id="campo_detallado" class="admin-select" disabled>
+                        <option value="">Selecciona el campo detallado</option>
                     </select>
                 </div>
             </div>
+
             <div class="admin-form-group">
                 <label for="resumen" class="admin-label">
                     <ion-icon name="reader-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -241,6 +249,7 @@ Registra un nuevo artículo científico o académico
                 </label>
                 <textarea name="resumen" id="resumen" class="admin-textarea" rows="8"><?= old('resumen') ?></textarea>
             </div>
+
             <div class="admin-form-group">
                 <label for="palabras_clave" class="admin-label">
                     <ion-icon name="pricetags-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -249,6 +258,7 @@ Registra un nuevo artículo científico o académico
                 <textarea name="palabras_clave" id="palabras_clave" class="admin-textarea"
                     placeholder="Separadas por comas"><?= old('palabras_clave') ?></textarea>
             </div>
+
             <div class="admin-form-group">
                 <label for="enlace_revista" class="admin-label">
                     <ion-icon name="link-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -257,6 +267,7 @@ Registra un nuevo artículo científico o académico
                 <input type="url" name="enlace_revista" id="enlace_revista" class="admin-input"
                     value="<?= old('enlace_revista') ?>">
             </div>
+
             <div class="admin-form-row">
                 <div class="admin-form-group">
                     <label for="archivo_articulo" class="admin-label">
@@ -275,6 +286,7 @@ Registra un nuevo artículo científico o académico
                     <p class="admin-text-secondary text-sm mt-1">(opcional)</p>
                 </div>
             </div>
+
             <div class="admin-form-group">
                 <label for="descripcion_articulo" class="admin-label">
                     <ion-icon name="information-circle-outline" class="w-4 h-4 mr-2"></ion-icon>
@@ -330,6 +342,275 @@ Registra un nuevo artículo científico o académico
                 this.value = '';
                 return;
             }
+        }
+    });
+</script>
+e
+<script>
+    // Estructura de datos jerárquica basada en las tablas proporcionadas
+    const camposData = {
+        "Educación": {
+            "Educación": [
+                "Educación",
+                "Psicopedagogía",
+                "Formación para docentes de educación preprimaria",
+                "Formación para docentes sin asignaturas de especialización",
+                "Formación para docentes con asignaturas de especialización"
+            ]
+        },
+        "Artes y humanidades": {
+            "Artes": [
+                "Técnicas audiovisuales y producción para medios de comunicación",
+                "Diseño",
+                "Artes",
+                "Música y artes escénicas"
+            ],
+            "Humanidades": [
+                "Religión y Teología",
+                "Historia y Arqueología",
+                "Filosofía"
+            ],
+            "Idiomas": [
+                "Idiomas",
+                "Literatura y lingüística"
+            ]
+        },
+        "Ciencias sociales, periodismo, información y derecho": {
+            "Ciencias sociales y del comportamiento": [
+                "Economía",
+                "Economía Matemática",
+                "Ciencias políticas",
+                "Psicología",
+                "Estudios Sociales y Culturales",
+                "Estudios de Género",
+                "Geografía y territorio"
+            ],
+            "Periodismo e información": [
+                "Periodismo y comunicación",
+                "Bibliotecología, documentación y archivología"
+            ],
+            "Derecho": [
+                "Derecho"
+            ]
+        },
+        "Administración": {
+            "Educación comercial y administración": [
+                "Contabilidad y auditoría",
+                "Gestión financiera",
+                "Administración",
+                "Mercadotecnia y publicidad",
+                "Información gerencial",
+                "Comercio",
+                "Competencias laborales"
+            ]
+        },
+        "Ciencias naturales, matemáticas y estadísticas": {
+            "Ciencias biológicas y afines": [
+                "Biología",
+                "Biofísica",
+                "Biofarmacéutica",
+                "Biomedicina",
+                "Bioquímica",
+                "Genética",
+                "Biodiversidad",
+                "Neurociencias"
+            ],
+            "Medio ambiente": [
+                "Medio ambiente",
+                "Recursos Naturales Renovables"
+            ],
+            "Ciencias físicas": [
+                "Química",
+                "Ciencias de la Tierra",
+                "Física"
+            ],
+            "Matemáticas y estadística": [
+                "Matemáticas",
+                "Estadísticas",
+                "Logística y transporte"
+            ]
+        },
+        "Tecnologías de la información y la comunicación (TIC)": {
+            "Tecnologías de la información y la comunicación (TIC)": [
+                "Computación",
+                "Diseño y administración de redes y bases de datos",
+                "Desarrollo y análisis de software y aplicaciones",
+                "Sistemas de Información"
+            ]
+        },
+        "Ingeniería, industria y construcción": {
+            "Ingeniaría y profesiones afines": [
+                "Química aplicada",
+                "Tecnología de protección del medio ambiente",
+                "Electricidad y energía",
+                "Electrónica, automatización y sonido",
+                "Mecánica y profesiones afines a la metalistería",
+                "Diseño y construcción de vehículos, barcos y aeronaves motorizadas",
+                "Tecnologías Nucleares y Energéticas",
+                "Mecatrónica",
+                "Hidráulica",
+                "Telecomunicaciones",
+                "Nanotecnología"
+            ],
+            "Industria y producción": [
+                "Procesamiento de alimentos",
+                "Materiales",
+                "Productos textiles",
+                "Minería y extracción",
+                "Producción industrial",
+                "Seguridad industrial",
+                "Diseño industrial y de procesos",
+                "Mantenimiento industrial"
+            ],
+            "Arquitectura y construcción": [
+                "Arquitectura, urbanismo y restauración",
+                "Construcción e ingeniería civil"
+            ]
+        },
+        "Agricultura, silvicultura, pesca y veterinaria": {
+            "Agricultura": [
+                "Producción agrícola y ganadera"
+            ],
+            "Silvicultura": [
+                "Silvicultura"
+            ],
+            "Pesca": [
+                "Pesca"
+            ],
+            "Veterinaria": [
+                "Veterinaria"
+            ]
+        },
+        "Salud y Bienestar": {
+            "Salud": [
+                "Odontología",
+                "Medicina",
+                "Enfermería y obstetricia",
+                "Tecnología de diagnóstico y tratamiento médico",
+                "Terapia y rehabilitación",
+                "Farmacia",
+                "Terapias alternativas y complementarias",
+                "Salud Pública"
+            ],
+            "Bienestar": [
+                "Asistencia a adultos mayores y discapacitados",
+                "Asistencia a la infancia y servicios para jóvenes"
+            ]
+        },
+        "Servicios": {
+            "Servicios personales": [
+                "Peluquería y tratamiento de belleza",
+                "Hotelería y gastronomía",
+                "Actividad física",
+                "Turismo"
+            ],
+            "Servicios de protección": [
+                "Prevención y gestión de riesgos",
+                "Salud y seguridad ocupacional"
+            ],
+            "Servicios de seguridad": [
+                "Educación policial, militar y defensa",
+                "Seguridad ciudadana"
+            ],
+            "Servicio de transporte": [
+                "Gestión del transporte"
+            ]
+        }
+    };
+
+    // Referencias a los elementos del DOM
+    const campoAmplio = document.getElementById('campo_amplio');
+    const campoEspecifico = document.getElementById('campo_especifico');
+    const campoDetallado = document.getElementById('campo_detallado');
+
+    // Función para limpiar y llenar un select
+    function llenarSelect(selectElement, opciones, placeholder) {
+        selectElement.innerHTML = `<option value="">${placeholder}</option>`;
+        opciones.forEach(opcion => {
+            const option = document.createElement('option');
+            option.value = opcion;
+            option.textContent = opcion;
+            selectElement.appendChild(option);
+        });
+    }
+
+    // Función para limpiar y deshabilitar un select
+    function limpiarSelect(selectElement, placeholder) {
+        selectElement.innerHTML = `<option value="">${placeholder}</option>`;
+        selectElement.disabled = true;
+    }
+
+    // Evento para campo amplio
+    campoAmplio.addEventListener('change', function () {
+        const valorAmplio = this.value;
+
+        // Limpiar campos dependientes
+        limpiarSelect(campoEspecifico, 'Selecciona el campo específico');
+        limpiarSelect(campoDetallado, 'Selecciona el campo detallado');
+
+        if (valorAmplio && camposData[valorAmplio]) {
+            // Llenar campo específico
+            const camposEspecificos = Object.keys(camposData[valorAmplio]);
+            llenarSelect(campoEspecifico, camposEspecificos, 'Selecciona el campo específico');
+            campoEspecifico.disabled = false;
+        }
+    });
+
+    // Evento para campo específico
+    campoEspecifico.addEventListener('change', function () {
+        const valorAmplio = campoAmplio.value;
+        const valorEspecifico = this.value;
+
+        // Limpiar campo detallado
+        limpiarSelect(campoDetallado, 'Selecciona el campo detallado');
+
+        if (valorAmplio && valorEspecifico && camposData[valorAmplio][valorEspecifico]) {
+            // Llenar campo detallado
+            const camposDetallados = camposData[valorAmplio][valorEspecifico];
+            llenarSelect(campoDetallado, camposDetallados, 'Selecciona el campo detallado');
+            campoDetallado.disabled = false;
+        }
+    });
+
+    // Función para obtener los valores seleccionados (útil para formularios)
+    function obtenerValores() {
+        return {
+            campo_amplio: campoAmplio.value,
+            campo_especifico: campoEspecifico.value,
+            campo_detallado: campoDetallado.value
+        };
+    }
+
+    // Función para establecer valores (útil para edición)
+    function establecerValores(amplio, especifico, detallado) {
+        if (amplio) {
+            campoAmplio.value = amplio;
+            campoAmplio.dispatchEvent(new Event('change'));
+
+            setTimeout(() => {
+                if (especifico) {
+                    campoEspecifico.value = especifico;
+                    campoEspecifico.dispatchEvent(new Event('change'));
+
+                    setTimeout(() => {
+                        if (detallado) {
+                            campoDetallado.value = detallado;
+                        }
+                    }, 10);
+                }
+            }, 10);
+        }
+    }
+
+    // Hacer las funciones disponibles globalmente
+    window.obtenerValores = obtenerValores;
+    window.establecerValores = establecerValores;
+
+    // Evento para mostrar valores seleccionados (demo)
+    document.addEventListener('change', function (e) {
+        if (e.target.matches('#campo_amplio, #campo_especifico, #campo_detallado')) {
+            const valores = obtenerValores();
+            console.log('Valores seleccionados:', valores);
         }
     });
 </script>

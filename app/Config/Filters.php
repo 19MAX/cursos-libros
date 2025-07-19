@@ -13,7 +13,7 @@ use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
 use \App\Filters\SessionAdminFilter;
-use \App\Filters\SessionCollectorFilter;
+use \App\Filters\SessionDocenteFilter;
 
 class Filters extends BaseFilters
 {
@@ -28,7 +28,7 @@ class Filters extends BaseFilters
      */
     public array $aliases = [
         'SessionAdmin' => SessionAdminFilter::class,
-        'SessionCollector' => SessionCollectorFilter::class,
+        'SessionDocente' => SessionDocenteFilter::class,
         'csrf'          => CSRF::class,
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
@@ -110,6 +110,7 @@ class Filters extends BaseFilters
     public array $filters = [
 
         'SessionAdmin' => ['before' => ['admin', 'admin/*']],
+        'SessionDocente' => ['before' => ['docente', 'docente/*']],
         'SessionCollector' => ['before' => ['collector', 'collector/*']],
     ];
 

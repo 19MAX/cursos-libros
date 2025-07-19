@@ -42,124 +42,54 @@
                     <span class="sidebar-text">Dashboard</span>
                 </a>
 
-                <!-- Usuarios - Con subniveles -->
-                <div class="admin-sidebar-group-item" data-title="Usuarios">
-                    <button type="button"
-                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'users') !== false ? 'admin-sidebar-item-active' : '' ?>"
-                        onclick="toggleSubmenu('users-submenu')" data-title="Usuarios">
-                        <ion-icon name="people-outline" class="admin-nav-item-icon"></ion-icon>
-                        <span class="sidebar-text">Usuarios</span>
-                        <ion-icon name="chevron-down-outline"
-                            class="admin-nav-item-icon ml-auto submenu-arrow"></ion-icon>
-                    </button>
-                    <div id="users-submenu"
-                        class="admin-submenu <?= strpos(current_url(), 'users') !== false ? 'admin-submenu-open' : '' ?>">
-                        <a href="<?= base_url('admin/users') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/users') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Lista de Usuarios">
-                            <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Lista</span>
-                        </a>
-                        <a href="<?= base_url('admin/users/create') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/users/create') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Crear Usuario">
-                            <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Crear</span>
-                        </a>
-                        <a href="<?= base_url('admin/users/roles') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/users/roles') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Roles">
-                            <ion-icon name="shield-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Roles</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Cursos - Con subniveles -->
-                <div class="admin-sidebar-group-item" data-title="Cursos">
-                    <button type="button"
-                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'courses') !== false ? 'admin-sidebar-item-active' : '' ?>"
-                        onclick="toggleSubmenu('courses-submenu')" data-title="Cursos">
-                        <ion-icon name="library-outline" class="admin-nav-item-icon"></ion-icon>
-                        <span class="sidebar-text">Cursos</span>
-                        <ion-icon name="chevron-down-outline"
-                            class="admin-nav-item-icon ml-auto submenu-arrow"></ion-icon>
-                    </button>
-                    <div id="courses-submenu"
-                        class="admin-submenu <?= strpos(current_url(), 'courses') !== false ? 'admin-submenu-open' : '' ?>">
-                        <a href="<?= base_url('admin/courses') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/courses') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Lista de Cursos">
-                            <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Lista</span>
-                        </a>
-                        <a href="<?= base_url('admin/courses/create') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/courses/create') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Crear Curso">
-                            <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Crear</span>
-                        </a>
-                        <a href="<?= base_url('admin/courses/categories') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/courses/categories') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Categorías">
-                            <ion-icon name="folder-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Categorías</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Libros - Con subniveles -->
-                <div class="admin-sidebar-group-item" data-title="Libros">
-                    <button type="button"
-                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'books') !== false ? 'admin-sidebar-item-active' : '' ?>"
-                        onclick="toggleSubmenu('books-submenu')" data-title="Libros">
-                        <ion-icon name="book-outline" class="admin-nav-item-icon"></ion-icon>
-                        <span class="sidebar-text">Libros</span>
-                        <ion-icon name="chevron-down-outline"
-                            class="admin-nav-item-icon ml-auto submenu-arrow"></ion-icon>
-                    </button>
-                    <div id="books-submenu"
-                        class="admin-submenu <?= strpos(current_url(), 'books') !== false ? 'admin-submenu-open' : '' ?>">
-                        <a href="<?= base_url('admin/books') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/books') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Lista de Libros">
-                            <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Lista</span>
-                        </a>
-                        <a href="<?= base_url('admin/books/create') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/books/create') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Agregar Libro">
-                            <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Agregar</span>
-                        </a>
-                        <a href="<?= base_url('admin/books/categories') ?>"
-                            class="admin-submenu-item <?= current_url() == base_url('admin/books/categories') ? 'admin-submenu-item-active' : '' ?>"
-                            data-title="Categorías">
-                            <ion-icon name="folder-outline" class="admin-nav-item-icon-sm"></ion-icon>
-                            <span class="sidebar-text">Categorías</span>
-                        </a>
-                    </div>
-                </div>
+                <!-- Capacitaciones - Sin subniveles -->
+                <a href="<?= base_url('admin/capacitaciones') ?>"
+                    class="admin-sidebar-item <?= strpos(current_url(), 'capacitaciones') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                    data-title="Capacitaciones">
+                    <ion-icon name="school-outline" class="admin-nav-item-icon"></ion-icon>
+                    <span class="sidebar-text">Capacitaciones</span>
+                </a>
+                <!-- Libros - Sin subniveles -->
+                <a href="<?= base_url('admin/libros') ?>"
+                    class="admin-sidebar-item <?= strpos(current_url(), 'libros') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                    data-title="Libros">
+                    <ion-icon name="book-outline" class="admin-nav-item-icon"></ion-icon>
+                    <span class="sidebar-text">Libros</span>
+                </a>
+                <!-- Artículos - Sin subniveles -->
+                <a href="<?= base_url('admin/articulos') ?>"
+                    class="admin-sidebar-item <?= strpos(current_url(), 'articulos') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                    data-title="Artículos">
+                    <ion-icon name="document-text-outline" class="admin-nav-item-icon"></ion-icon>
+                    <span class="sidebar-text">Artículos</span>
+                </a>
+                <!-- Documentos - Sin subniveles -->
+                <a href="<?= base_url('admin/documentos') ?>"
+                    class="admin-sidebar-item <?= strpos(current_url(), 'documentos') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                    data-title="Documentos">
+                    <ion-icon name="folder-outline" class="admin-nav-item-icon"></ion-icon>
+                    <span class="sidebar-text">Documentos</span>
+                </a>
+                <!-- Docentes - Sin subniveles -->
+                <a href="<?= base_url('admin/docentes') ?>"
+                    class="admin-sidebar-item <?= strpos(current_url(), 'docentes') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                    data-title="Docentes">
+                    <ion-icon name="people-outline" class="admin-nav-item-icon"></ion-icon>
+                    <span class="sidebar-text">Docentes</span>
+                </a>
 
                 <div class="admin-sidebar-divider sidebar-text"></div>
 
                 <div class="admin-sidebar-group sidebar-text">Configuración</div>
 
-                <!-- Configuración - Sin subniveles -->
-                <a href="<?= base_url('admin/settings') ?>"
-                    class="admin-sidebar-item <?= strpos(current_url(), 'settings') !== false ? 'admin-sidebar-item-active' : '' ?>"
-                    data-title="Configuración">
-                    <ion-icon name="settings-outline" class="admin-nav-item-icon"></ion-icon>
-                    <span class="sidebar-text">Configuración</span>
-                </a>
 
                 <!-- Perfil - Sin subniveles -->
-                <a href="<?= base_url('admin/profile') ?>"
+                <!-- <a href="<?= base_url('admin/profile') ?>"
                     class="admin-sidebar-item <?= strpos(current_url(), 'profile') !== false ? 'admin-sidebar-item-active' : '' ?>"
                     data-title="Perfil">
                     <ion-icon name="person-outline" class="admin-nav-item-icon"></ion-icon>
                     <span class="sidebar-text">Perfil</span>
-                </a>
+                </a> -->
             </nav>
         </div>
     </aside>
@@ -206,12 +136,12 @@
                     </button>
 
                     <!-- Notifications -->
-                    <button type="button" class="admin-btn-icon relative" aria-label="Notificaciones">
+                    <!-- <button type="button" class="admin-btn-icon relative" aria-label="Notificaciones">
                         <ion-icon name="notifications-outline" class="w-5 h-5"></ion-icon>
                         <div
                             class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
                             3</div>
-                    </button>
+                    </button> -->
 
                     <!-- User menu -->
                     <div class="relative">
@@ -221,14 +151,14 @@
                         </button>
                         <div class="admin-dropdown hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg"
                             id="user-dropdown">
-                            <a href="<?= base_url('admin/profile') ?>" class="admin-dropdown-item">
+                            <!-- <a href="<?= base_url('admin/profile') ?>" class="admin-dropdown-item">
                                 <ion-icon name="person-outline" class="w-4 h-4 mr-2"></ion-icon>
                                 Mi Perfil
                             </a>
                             <a href="<?= base_url('admin/settings') ?>" class="admin-dropdown-item">
                                 <ion-icon name="settings-outline" class="w-4 h-4 mr-2"></ion-icon>
                                 Configuración
-                            </a>
+                            </a> -->
                             <div class="admin-divider"></div>
                             <a href="<?= base_url('auth/logout') ?>"
                                 class="admin-dropdown-item text-red-600 dark:text-red-400">

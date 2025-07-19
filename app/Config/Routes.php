@@ -30,9 +30,46 @@ $routes->group('admin', function ($routes) {
         $routes->get('delete/(:num)', 'Admin\Courses\CoursesController::delete/$1');
     });
 
+    $routes->group('capacitaciones', function ($routes) {
+        $routes->get('', 'Admin\CapacitacionesController::index');
+        $routes->get('show/(:num)', 'Admin\CapacitacionesController::show/$1');
+        $routes->post('aprobar/(:num)', 'Admin\CapacitacionesController::aprobar/$1');
+        $routes->post('rechazar/(:num)', 'Admin\CapacitacionesController::rechazar/$1');
+    });
+
+    $routes->group('libros', function ($routes) {
+        $routes->get('', 'Admin\LibrosController::index');
+        $routes->get('show/(:num)', 'Admin\LibrosController::show/$1');
+        $routes->post('aprobar/(:num)', 'Admin\LibrosController::aprobar/$1');
+        $routes->post('rechazar/(:num)', 'Admin\LibrosController::rechazar/$1');
+    });
+
+    $routes->group('articulos', function ($routes) {
+        $routes->get('', 'Admin\ArticulosController::index');
+        $routes->get('show/(:num)', 'Admin\ArticulosController::show/$1');
+        $routes->post('aprobar/(:num)', 'Admin\ArticulosController::aprobar/$1');
+        $routes->post('rechazar/(:num)', 'Admin\ArticulosController::rechazar/$1');
+    });
+    $routes->group('documentos', function ($routes) {
+        $routes->get('', 'Admin\DocumentosController::index');
+        $routes->get('show/(:num)', 'Admin\DocumentosController::show/$1');
+        $routes->post('aprobar/(:num)', 'Admin\DocumentosController::aprobar/$1');
+        $routes->post('rechazar/(:num)', 'Admin\DocumentosController::rechazar/$1');
+    });
+    $routes->group('docentes', function ($routes) {
+        $routes->get('', 'Admin\DocentesController::index');
+        $routes->get('create', 'Admin\DocentesController::create');
+        $routes->post('store', 'Admin\DocentesController::store');
+        $routes->get('edit/(:num)', 'Admin\DocentesController::edit/$1');
+        $routes->post('update/(:num)', 'Admin\DocentesController::update/$1');
+        $routes->get('delete/(:num)', 'Admin\DocentesController::delete/$1');
+    });
+
 });
 $routes->group('docente', function ($routes) {
     $routes->get('', 'Docente\DashboardController::index');
+    $routes->get('perfil', 'Docente\DashboardController::perfil');
+    $routes->post('perfil', 'Docente\DashboardController::updatePerfil');
 
     // Rutas para capacitaciones
     $routes->group('capacitaciones', function ($routes) {
@@ -62,5 +99,15 @@ $routes->group('docente', function ($routes) {
         $routes->get('edit/(:num)', 'Docente\ArticulosController::edit/$1');
         $routes->post('update/(:num)', 'Docente\ArticulosController::update/$1');
         $routes->post('delete/(:num)', 'Docente\ArticulosController::delete/$1');
+    });
+
+    // Rutas para documentos
+    $routes->group('documentos', function ($routes) {
+        $routes->get('', 'Docente\DocumentosController::index');
+        $routes->get('create', 'Docente\DocumentosController::create');
+        $routes->post('store', 'Docente\DocumentosController::store');
+        $routes->get('edit/(:num)', 'Docente\DocumentosController::edit/$1');
+        $routes->post('update/(:num)', 'Docente\DocumentosController::update/$1');
+        $routes->post('delete/(:num)', 'Docente\DocumentosController::delete/$1');
     });
 });

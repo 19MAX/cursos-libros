@@ -21,7 +21,7 @@
             <div class="flex items-center justify-between mb-5">
                 <div class="flex items-center">
                     <img src="<?= base_url('assets/images/imagen-login.png') ?>" class="h-8 w-8 me-3" alt="Logo" />
-                    <span class="self-center text-xl font-semibold admin-text-primary sidebar-text">Admin Panel</span>
+                    <span class="self-center text-xl font-semibold admin-text-primary sidebar-text">Portafolio Docente</span>
                 </div>
                 <!-- Botón de cerrar sidebar en móvil -->
                 <button type="button" class="admin-btn-icon md:hidden" data-drawer-hide="sidebar"
@@ -30,13 +30,19 @@
                 </button>
             </div>
 
+            <!-- Nombre del docente -->
+            <div class="mb-4 mt-2 text-base font-semibold text-gray-700 dark:text-gray-200 text-center">
+                <?php $docente = session('user_name') ? session('user_name') : (session('name') . ' ' . session('surname')); ?>
+                <?= esc($docente) ?>
+            </div>
+
             <!-- Navigation -->
             <nav class="space-y-2">
                 <div class="admin-sidebar-group sidebar-text">General</div>
 
                 <!-- Dashboard - Sin subniveles -->
-                <a href="<?= base_url('admin') ?>"
-                    class="admin-sidebar-item <?= current_url() == base_url('admin') ? 'admin-sidebar-item-active' : '' ?>"
+                <a href="<?= base_url('docente') ?>"
+                    class="admin-sidebar-item <?= current_url() == base_url('docente') ? 'admin-sidebar-item-active' : '' ?>"
                     data-title="Dashboard">
                     <ion-icon name="home-outline" class="admin-nav-item-icon"></ion-icon>
                     <span class="sidebar-text">Dashboard</span>
@@ -81,12 +87,12 @@
                             <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
                             <span class="sidebar-text">Mis Libros</span>
                         </a>
-                        <a href="<?= base_url('docente/libros/create') ?>"
+                        <!-- <a href="<?= base_url('docente/libros/create') ?>"
                             class="admin-submenu-item <?= current_url() == base_url('docente/libros/create') ? 'admin-submenu-item-active' : '' ?>"
                             data-title="Agregar Libro">
                             <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
                             <span class="sidebar-text">Agregar</span>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 
@@ -108,30 +114,48 @@
                             <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
                             <span class="sidebar-text">Mis Artículos</span>
                         </a>
-                        <a href="<?= base_url('docente/articulos/create') ?>"
+                        <!-- <a href="<?= base_url('docente/articulos/create') ?>"
                             class="admin-submenu-item <?= current_url() == base_url('docente/articulos/create') ? 'admin-submenu-item-active' : '' ?>"
                             data-title="Agregar Artículo">
                             <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
                             <span class="sidebar-text">Agregar</span>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 
+                <!-- Documentos - Con subniveles (Docente) -->
+                <div class="admin-sidebar-group-item" data-title="Documentos">
+                    <button type="button"
+                        class="admin-sidebar-item w-full text-left <?= strpos(current_url(), 'documentos') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                        onclick="toggleSubmenu('documentos-submenu')" data-title="Documentos">
+                        <ion-icon name="folder-outline" class="admin-nav-item-icon"></ion-icon>
+                        <span class="sidebar-text">Documentos</span>
+                        <ion-icon name="chevron-down-outline"
+                            class="admin-nav-item-icon ml-auto submenu-arrow"></ion-icon>
+                    </button>
+                    <div id="documentos-submenu"
+                        class="admin-submenu <?= strpos(current_url(), 'documentos') !== false ? 'admin-submenu-open' : '' ?>">
+                        <a href="<?= base_url('docente/documentos') ?>"
+                            class="admin-submenu-item <?= current_url() == base_url('docente/documentos') ? 'admin-submenu-item-active' : '' ?>"
+                            data-title="Mis Documentos">
+                            <ion-icon name="list-outline" class="admin-nav-item-icon-sm"></ion-icon>
+                            <span class="sidebar-text">Mis Documentos</span>
+                        </a>
+                        <!-- <a href="<?= base_url('docente/documentos/create') ?>"
+                            class="admin-submenu-item <?= current_url() == base_url('docente/documentos/create') ? 'admin-submenu-item-active' : '' ?>"
+                            data-title="Agregar Documento">
+                            <ion-icon name="add-outline" class="admin-nav-item-icon-sm"></ion-icon>
+                            <span class="sidebar-text">Agregar</span>
+                        </a> -->
+                    </div>
                 <div class="admin-sidebar-divider sidebar-text"></div>
 
                 <div class="admin-sidebar-group sidebar-text">Configuración</div>
 
-                <!-- Configuración - Sin subniveles -->
-                <a href="<?= base_url('admin/settings') ?>"
-                    class="admin-sidebar-item <?= strpos(current_url(), 'settings') !== false ? 'admin-sidebar-item-active' : '' ?>"
-                    data-title="Configuración">
-                    <ion-icon name="settings-outline" class="admin-nav-item-icon"></ion-icon>
-                    <span class="sidebar-text">Configuración</span>
-                </a>
 
                 <!-- Perfil - Sin subniveles -->
-                <a href="<?= base_url('admin/profile') ?>"
-                    class="admin-sidebar-item <?= strpos(current_url(), 'profile') !== false ? 'admin-sidebar-item-active' : '' ?>"
+                <a href="<?= base_url('docente/perfil') ?>"
+                    class="admin-sidebar-item <?= strpos(current_url(), 'perfil') !== false ? 'admin-sidebar-item-active' : '' ?>"
                     data-title="Perfil">
                     <ion-icon name="person-outline" class="admin-nav-item-icon"></ion-icon>
                     <span class="sidebar-text">Perfil</span>
@@ -182,29 +206,40 @@
                     </button>
 
                     <!-- Notifications -->
-                    <button type="button" class="admin-btn-icon relative" aria-label="Notificaciones">
+                    <!-- <button type="button" class="admin-btn-icon relative" aria-label="Notificaciones">
                         <ion-icon name="notifications-outline" class="w-5 h-5"></ion-icon>
                         <div
                             class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
                             3</div>
-                    </button>
+                    </button> -->
 
                     <!-- User menu -->
                     <div class="relative">
                         <button type="button" class="admin-btn-icon" aria-expanded="false"
                             data-dropdown-toggle="user-dropdown">
-                            <div class="admin-avatar">AD</div>
+                            <?php
+                            $docente = session('user_name') ? session('user_name') : (session('names') . ' ' . session('surnames'));
+                            $iniciales = '';
+                            if (!empty($docente)) {
+                                $partes = explode(' ', trim($docente));
+                                $iniciales .= strtoupper(mb_substr($partes[0], 0, 1));
+                                if (isset($partes[1])) {
+                                    $iniciales .= strtoupper(mb_substr($partes[1], 0, 1));
+                                }
+                            }
+                            ?>
+                            <div class="admin-avatar"><?= esc($iniciales) ?></div>
                         </button>
                         <div class="admin-dropdown hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg"
                             id="user-dropdown">
-                            <a href="<?= base_url('admin/profile') ?>" class="admin-dropdown-item">
+                            <a href="<?= base_url('docente/perfil') ?>" class="admin-dropdown-item">
                                 <ion-icon name="person-outline" class="w-4 h-4 mr-2"></ion-icon>
                                 Mi Perfil
                             </a>
-                            <a href="<?= base_url('admin/settings') ?>" class="admin-dropdown-item">
+                            <!-- <a href="<?= base_url('admin/settings') ?>" class="admin-dropdown-item">
                                 <ion-icon name="settings-outline" class="w-4 h-4 mr-2"></ion-icon>
                                 Configuración
-                            </a>
+                            </a> -->
                             <div class="admin-divider"></div>
                             <a href="<?= base_url('auth/logout') ?>"
                                 class="admin-dropdown-item text-red-600 dark:text-red-400">

@@ -34,9 +34,8 @@ class LibrosController extends BaseController
 
     private function processFile($file, $docenteId, $tipo = 'libro')
     {
-        // Puedes adaptar este helper según tu lógica de almacenamiento
-        $nombre = $tipo === 'portada' ? 'portada' : 'libro';
-        $result = uploadLibroFile($file, $docenteId, $nombre);
+        // Pasar el tipo correcto al helper
+        $result = uploadLibroFile($file, $docenteId, $tipo);
         return $result;
     }
 
@@ -123,9 +122,18 @@ class LibrosController extends BaseController
         // Procesar archivos
         $fileLibro = $this->request->getFile('archivo_libro');
         $filePortada = $this->request->getFile('portada_libro');
+        $fileProcesoPares = $this->request->getFile('proceso_pares');
 
         $resultLibro = $this->processFile($fileLibro, $docenteId, 'libro');
         $resultPortada = $this->processFile($filePortada, $docenteId, 'portada');
+        $resultProcesoPares = null;
+        if ($fileProcesoPares && $fileProcesoPares->isValid() && !$fileProcesoPares->hasMoved()) {
+            $resultProcesoPares = $this->processFile($fileProcesoPares, $docenteId, 'proceso_pares');
+            if (!$resultProcesoPares['success']) {
+                return redirect()->back()->withInput()->with('error', $resultProcesoPares['message']);
+            }
+            $data['proceso_pares'] = $resultProcesoPares['path'];
+        }
 
         if (!$resultLibro['success']) {
             return redirect()->back()->withInput()->with('error', $resultLibro['message']);
@@ -153,6 +161,7 @@ class LibrosController extends BaseController
             // Eliminar archivos subidos si hubo error
             if (isset($data['archivo_libro'])) deleteLibroFile($data['archivo_libro']);
             if (isset($data['portada_libro'])) deleteLibroFile($data['portada_libro']);
+            if (isset($data['proceso_pares'])) deleteLibroFile($data['proceso_pares']);
             return redirect()->back()->withInput()->with('error', 'Error interno del servidor: ' . $e->getMessage());
         }
     }
@@ -213,6 +222,7 @@ class LibrosController extends BaseController
         ];
         $fileLibro = $this->request->getFile('archivo_libro');
         $filePortada = $this->request->getFile('portada_libro');
+        $fileProcesoPares = $this->request->getFile('proceso_pares');
         if ($fileLibro && $fileLibro->isValid() && !$fileLibro->hasMoved()) {
             $validationRules['archivo_libro'] = [
                 'rules' => 'max_size[archivo_libro,20480]',
@@ -226,6 +236,14 @@ class LibrosController extends BaseController
                 'rules' => 'max_size[portada_libro,5120]',
                 'errors' => [
                     'max_size' => 'La portada no debe exceder 5MB.'
+                ]
+            ];
+        }
+        if ($fileProcesoPares && $fileProcesoPares->isValid() && !$fileProcesoPares->hasMoved()) {
+            $validationRules['proceso_pares'] = [
+                'rules' => 'max_size[proceso_pares,5120]',
+                'errors' => [
+                    'max_size' => 'El archivo de proceso de pares no debe exceder 5MB.'
                 ]
             ];
         }
@@ -273,6 +291,14 @@ class LibrosController extends BaseController
             if (!empty($libro['portada_libro'])) deleteLibroFile($libro['portada_libro']);
             $data['portada_libro'] = $resultPortada['path'];
         }
+        if ($fileProcesoPares && $fileProcesoPares->isValid() && !$fileProcesoPares->hasMoved()) {
+            $resultProcesoPares = $this->processFile($fileProcesoPares, $docenteId, 'proceso_pares');
+            if (!$resultProcesoPares['success']) {
+                return redirect()->back()->withInput()->with('error', $resultProcesoPares['message']);
+            }
+            if (!empty($libro['proceso_pares'])) deleteLibroFile($libro['proceso_pares']);
+            $data['proceso_pares'] = $resultProcesoPares['path'];
+        }
         $this->librosModel->db->transStart();
         try {
             $updated = $this->librosModel->update($id, $data);
@@ -288,6 +314,7 @@ class LibrosController extends BaseController
             $this->librosModel->db->transRollback();
             if (isset($data['archivo_libro'])) deleteLibroFile($data['archivo_libro']);
             if (isset($data['portada_libro'])) deleteLibroFile($data['portada_libro']);
+            if (isset($data['proceso_pares'])) deleteLibroFile($data['proceso_pares']);
             return redirect()->back()->withInput()->with('error', 'Error interno del servidor: ' . $e->getMessage());
         }
     }
@@ -306,6 +333,7 @@ class LibrosController extends BaseController
         try {
             if (!empty($libro['archivo_libro'])) deleteLibroFile($libro['archivo_libro']);
             if (!empty($libro['portada_libro'])) deleteLibroFile($libro['portada_libro']);
+            if (!empty($libro['proceso_pares'])) deleteLibroFile($libro['proceso_pares']);
             $deleted = $this->librosModel->delete($id);
             if (!$deleted) {
                 throw new \Exception('Error al eliminar el libro de la base de datos');

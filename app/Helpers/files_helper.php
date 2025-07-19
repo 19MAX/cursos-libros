@@ -298,13 +298,23 @@ if (!function_exists('uploadLibroFile')) {
         if (!$file || !$file->isValid() || $file->hasMoved()) {
             return ['success' => false, 'message' => 'Archivo no válido o ya procesado'];
         }
-        $folder = $tipo === 'portada' ? 'portadas' : 'libros';
+        
+        // Determinar la carpeta según el tipo
+        if ($tipo === 'portada') {
+            $folder = 'portadas';
+        } elseif ($tipo === 'proceso_pares') {
+            $folder = 'libros/proceso_pares';
+        } else {
+            $folder = 'libros';
+        }
+        
         $uploadPath = ROOTPATH . 'public/uploads/' . $docenteId . '/' . $folder . '/';
         if (!is_dir($uploadPath)) {
             if (!mkdir($uploadPath, 0755, true)) {
                 return ['success' => false, 'message' => 'Error al crear el directorio de destino'];
             }
         }
+        
         $allowedTypes = $tipo === 'portada' ? ['jpg', 'jpeg', 'png', 'gif', 'webp'] : ['pdf'];
         $extension = strtolower($file->getClientExtension());
         if (!in_array($extension, $allowedTypes)) {

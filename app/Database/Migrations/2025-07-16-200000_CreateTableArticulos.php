@@ -104,12 +104,18 @@ class CreateTableArticulos extends Migration
                 'null' => true,
                 'comment' => 'DOI del artículo',
             ],
-            'area_conocimiento' => [
+            // CAMPOS NUEVOS SEGÚN FORMULARIO
+            'campo_amplio' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
             ],
-            'disciplina' => [
+            'campo_especifico' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'campo_detallado' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => true,
@@ -144,6 +150,12 @@ class CreateTableArticulos extends Migration
                 'type' => 'DECIMAL',
                 'constraint' => '10,2',
                 'comment' => 'Factor de impacto numérico',
+            ],
+            'puntaje_asignado' => [
+                'type' => 'DECIMAL',
+                'constraint' => '5,2',
+                'default' => 0.00,
+                'null' => false,
             ],
             'estado' => [
                 'type' => 'ENUM',

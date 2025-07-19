@@ -59,6 +59,10 @@ class ArticulosController extends BaseController
         $data['docente_id'] = session('user_id');
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['estado'] = 'pendiente';
+        // Asegurar que los campos nuevos estén presentes aunque sean null
+        $data['campo_amplio'] = $this->request->getPost('campo_amplio');
+        $data['campo_especifico'] = $this->request->getPost('campo_especifico');
+        $data['campo_detallado'] = $this->request->getPost('campo_detallado');
         // Subir archivo principal
         $file = $this->request->getFile('archivo_articulo');
         $fileResult = uploadArticuloFile($file, $data['docente_id'], 'articulo');
@@ -126,6 +130,9 @@ class ArticulosController extends BaseController
         }
         $data = $this->request->getPost();
         $data['updated_at'] = date('Y-m-d H:i:s');
+        $data['campo_amplio'] = $this->request->getPost('campo_amplio');
+        $data['campo_especifico'] = $this->request->getPost('campo_especifico');
+        $data['campo_detallado'] = $this->request->getPost('campo_detallado');
         // Procesar archivo principal si se subió uno nuevo
         if ($file && $file->isValid() && !$file->hasMoved()) {
             $fileResult = uploadArticuloFile($file, $docenteId, 'articulo');

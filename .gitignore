@@ -1,6 +1,9 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
+#Compressed files
+*.zip
+
 #tailwind config
 node_modules/
 public/css/output.css

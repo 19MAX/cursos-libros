@@ -33,7 +33,16 @@
                         <ion-icon name="book-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Título del Libro
                     </label>
-                    <input type="text" id="titulo_libro" name="titulo_libro" value="<?= old('titulo_libro') ?>" class="admin-input" placeholder="Ej: Introducción a la Física" required>
+                    <input type="text" id="titulo_libro" name="titulo_libro" value="<?= old('titulo_libro') ?>"
+                        class="admin-input" placeholder="Ej: Introducción a la Física" required>
+                </div>
+                <div class="admin-form-group">
+                    <label for="doi" class="admin-label admin-label-required">
+                        <ion-icon name="link-outline" class="w-4 h-4 mr-2"></ion-icon>
+                        Doi
+                    </label>
+                    <input type="text" id="titulo_libro" name="doi" value="<?= old('titulo_libro') ?>"
+                        class="admin-input" placeholder="https://doi" required>
                 </div>
             </div>
             <div class="admin-form-row">
@@ -42,14 +51,16 @@
                         <ion-icon name="people-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Autores
                     </label>
-                    <input type="text" id="autores" name="autores" value="<?= old('autores') ?>" class="admin-input" placeholder="Ej: Juan Pérez, Ana Gómez" required>
+                    <input type="text" id="autores" name="autores" value="<?= old('autores') ?>" class="admin-input"
+                        placeholder="Ej: Juan Pérez, Ana Gómez" required>
                 </div>
                 <div class="admin-form-group">
                     <label for="editorial" class="admin-label admin-label-required">
                         <ion-icon name="business-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Editorial
                     </label>
-                    <input type="text" id="editorial" name="editorial" value="<?= old('editorial') ?>" class="admin-input" placeholder="Ej: Editorial Alfa" required>
+                    <input type="text" id="editorial" name="editorial" value="<?= old('editorial') ?>"
+                        class="admin-input" placeholder="Ej: Editorial Alfa" required>
                 </div>
             </div>
             <div class="admin-form-row">
@@ -60,11 +71,16 @@
                     </label>
                     <select id="tipo_libro" name="tipo_libro" class="admin-select" required>
                         <option value="">Selecciona el tipo de libro</option>
-                        <option value="libro_completo" <?= old('tipo_libro') == 'libro_completo' ? 'selected' : '' ?>>Libro completo</option>
-                        <option value="capitulo_libro" <?= old('tipo_libro') == 'capitulo_libro' ? 'selected' : '' ?>>Capítulo de libro</option>
-                        <option value="libro_texto" <?= old('tipo_libro') == 'libro_texto' ? 'selected' : '' ?>>Libro de texto</option>
-                        <option value="libro_cientifico" <?= old('tipo_libro') == 'libro_cientifico' ? 'selected' : '' ?>>Libro científico</option>
-                        <option value="libro_tecnico" <?= old('tipo_libro') == 'libro_tecnico' ? 'selected' : '' ?>>Libro técnico</option>
+                        <option value="libro_completo" <?= old('tipo_libro') == 'libro_completo' ? 'selected' : '' ?>>Libro
+                            completo</option>
+                        <option value="capitulo_libro" <?= old('tipo_libro') == 'capitulo_libro' ? 'selected' : '' ?>>
+                            Capítulo de libro</option>
+                        <option value="libro_texto" <?= old('tipo_libro') == 'libro_texto' ? 'selected' : '' ?>>Libro de
+                            texto</option>
+                        <option value="libro_cientifico" <?= old('tipo_libro') == 'libro_cientifico' ? 'selected' : '' ?>>
+                            Libro científico</option>
+                        <option value="libro_tecnico" <?= old('tipo_libro') == 'libro_tecnico' ? 'selected' : '' ?>>Libro
+                            técnico</option>
                         <option value="otros" <?= old('tipo_libro') == 'otros' ? 'selected' : '' ?>>Otros</option>
                     </select>
                 </div>
@@ -73,7 +89,8 @@
                         <ion-icon name="barcode-outline" class="w-4 h-4 mr-2"></ion-icon>
                         ISBN
                     </label>
-                    <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" class="admin-input" placeholder="Ej: 978-3-16-148410-0">
+                    <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" class="admin-input"
+                        placeholder="Ej: 978-3-16-148410-0">
                 </div>
             </div>
             <div class="admin-form-row">
@@ -82,7 +99,18 @@
                         <ion-icon name="calendar-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Fecha de Publicación
                     </label>
-                    <input type="date" id="fecha_publicacion" name="fecha_publicacion" value="<?= old('fecha_publicacion') ?>" class="admin-input" required>
+                    <input type="date" id="fecha_publicacion" name="fecha_publicacion"
+                        value="<?= old('fecha_publicacion') ?>" class="admin-input" required>
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="proceso_pares" class="admin-label admin-label-required">
+                        <ion-icon name="document-outline" class="w-4 h-4 mr-2"></ion-icon>
+                        Evidencia del proceso de revisión por pares
+                    </label>
+                    <input type="file" id="proceso_pares" name="proceso_pares" accept="application/pdf"
+                        class="admin-file-input" required>
+                    <p class="admin-text-secondary text-sm mt-1">Solo PDF. Máx. 20MB.</p>
                 </div>
             </div>
             <div class="admin-form-row">
@@ -91,7 +119,8 @@
                         <ion-icon name="document-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Archivo del Libro (PDF)
                     </label>
-                    <input type="file" id="archivo_libro" name="archivo_libro" accept="application/pdf" class="admin-file-input" required>
+                    <input type="file" id="archivo_libro" name="archivo_libro" accept="application/pdf"
+                        class="admin-file-input" required>
                     <p class="admin-text-secondary text-sm mt-1">Solo PDF. Máx. 20MB.</p>
                 </div>
                 <div class="admin-form-group">
@@ -99,7 +128,8 @@
                         <ion-icon name="image-outline" class="w-4 h-4 mr-2"></ion-icon>
                         Portada del Libro (JPG, PNG, GIF, WEBP)
                     </label>
-                    <input type="file" id="portada_libro" name="portada_libro" accept="image/*" class="admin-file-input" required>
+                    <input type="file" id="portada_libro" name="portada_libro" accept="image/*" class="admin-file-input"
+                        required>
                     <p class="admin-text-secondary text-sm mt-1">Solo imágenes. Máx. 5MB.</p>
                 </div>
             </div>
@@ -129,4 +159,4 @@
         }
     });
 </script>
-<?= $this->endSection() ?> 
+<?= $this->endSection() ?>
